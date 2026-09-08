@@ -70,8 +70,8 @@ que existe contra eso.
 ## 3. Dejar la consulta lista
 
 Al entrar se aterriza en **Administración**, repartida en pestañas: *Consulta*,
-*Tarifas*, *Cuestionarios*, *Seguridad y copias*, *Conexiones*, *Diagnóstico* y
-*Tema*.
+*Tarifas*, *Mensajes al paciente*, *Cuestionarios*, *Seguridad y copias*,
+*Conexiones*, *Diagnóstico* y *Tema*.
 
 Para dejar la consulta lista hay que pasar por cuatro, y ya no se vuelven a
 tocar salvo que cambie algo: [**Consulta**](#31-consulta),
@@ -79,8 +79,10 @@ tocar salvo que cambie algo: [**Consulta**](#31-consulta),
 recuperación](#33-la-clave-de-recuperación) y [la verificación en dos
 pasos](#34-verificación-en-dos-pasos-opcional-recomendable)— y
 [**Conexiones**](#35-conectar-google). *Cuestionarios* solo hace falta si se van
-a pasar [test](#cuestionarios), *[Diagnóstico](#36-informes-de-diagnóstico)* no
-se toca y *[Tema](#37-tema)* es cuestión de gusto.
+a pasar [test](#cuestionarios), *[Mensajes al
+paciente](#38-mensajes-al-paciente)* trae el texto ya escrito,
+*[Diagnóstico](#36-informes-de-diagnóstico)* no se toca y *[Tema](#37-tema)* es
+cuestión de gusto.
 
 ![Pantalla de Administración, abierta por la pestaña Consulta con los datos de la profesional](imagenes/administracion.png)
 
@@ -98,7 +100,7 @@ Tres cosas en esta pestaña:
   sirve para saber quién firmó qué: al cambiar la versión, las fichas que habían
   firmado la anterior quedan marcadas para volver a firmar.
 - **Logotipo de la consulta**: se estampa como marca de agua muy atenuada en las
-  facturas e informes que se exporten. Opcional.
+  facturas, informes y expedientes que se exporten. Opcional.
 
 ### 3.2 Tarifas
 
@@ -196,8 +198,10 @@ correo de quien mantiene la aplicación, **sin que haya que pulsar nada**.
 
 El informe **no lleva datos de pacientes**: solo el tipo de fallo, la traza
 técnica y datos del equipo (versión, sistema, espacio en disco). Desde esa
-misma pestaña se puede **desactivar el envío automático** y marcar cada
-incidencia como revisada. El registro no se borra.
+misma pestaña se puede **desactivar el envío automático**, mandar uno en el
+momento con **Enviar informe ahora** —útil si te pido que me lo envíes al
+contarme un problema— y marcar cada incidencia como revisada. El registro no se
+borra.
 
 ### 3.7 Tema
 
@@ -211,6 +215,52 @@ modo que si Windows se pone oscuro al anochecer, Bitácora también.
 El tema es de **este ordenador**, no de la consulta: no viaja con los datos ni
 con las copias de seguridad, así que el portátil puede ir en oscuro y el
 ordenador de la mesa en claro.
+
+### 3.8 Mensajes al paciente
+
+Bitácora escribe sola cuatro correos: el de **dar una cita**, el de **cambiarla
+de hora**, el **recordatorio** de unas horas antes y el de **enviar una
+factura**. En **Administración › Mensajes al paciente** se elige cuál en el
+desplegable de arriba y se reescribe a gusto: el asunto y el mensaje.
+
+Vienen escritos de fábrica, así que **no hay que tocar nada** para empezar a
+usar la aplicación. Y esto es solo el borrador: el correo se puede seguir
+retocando en el momento de enviarlo, en la ventana **Enviar la cita** ([ver
+Avisar al paciente](#avisar-al-paciente)) o **Enviar la factura** ([ver
+Facturación](#8-facturación)).
+
+**Los datos se ponen con los botones.** La fecha, la hora, el nombre del
+paciente, el enlace de la videollamada y las horas de aviso cambian en cada
+cita, así que en el texto van como un hueco. No hay que escribirlos a mano: se
+pone el cursor donde se quiere que salgan, se pulsa el botón —*fecha*, *hora*,
+*paciente*, *enlace*, *horas de aviso*— y el hueco aparece ahí. En pantalla se
+ven entre llaves (`{fecha}`); al paciente le llega ya el dato de su cita.
+
+**Cada mensaje tiene los suyos.** El de la factura no lleva hora ni enlace, sino
+*número de factura* e *importe*; los botones cambian solos al elegir el mensaje.
+Poner el hueco de otro mensaje se considera una errata y no deja guardar:
+saldría en el correo con las llaves y todo.
+
+Lo que **no** hay, ni ahí ni en el impreso, es la fecha de la sesión: cruzada con
+un nombre cuenta que esa persona fue a consulta y qué día, y eso no hace falta
+para cobrar.
+
+Una regla, la única: **la línea que lleve el enlace desaparece entera cuando la
+cita no es online**. Por eso el enlace conviene dejarlo en su propia línea, y no
+metido en mitad de un párrafo que haga falta.
+
+A la derecha, **Así le llegará** enseña el correo terminado con datos de
+ejemplo, según se escribe. La casilla **Verlo como una cita online** sirve para
+comprobar cómo queda con enlace y sin él.
+
+Si algo no cuadra —un hueco mal escrito, una cita sin fecha o sin hora, una
+factura sin su número— sale avisado en rojo y **Guardar el mensaje** no deja
+pulsarse hasta arreglarlo: más vale verlo aquí que en el correo que ya ha
+salido. **Volver al texto original** deja el mensaje como venía de fábrica.
+
+Lo que no debe ir en estos correos: **nada de lo que se habla en sesión**. Un
+correo acaba leído por quien no debe más veces de lo que uno cree, y por eso el
+texto de fábrica solo dice día, hora y enlace.
 
 ---
 
@@ -242,10 +292,15 @@ se rellenan unos campos y otros no.
 
 ### Abrir un caso
 
-Una persona dada de alta todavía no tiene terapia. Hay que abrirle un caso: en su
-ficha se elige el **tipo de terapia** en la lista de arriba y se pulsa **Abrir
-caso**. Si la terapia elegida es de pareja, pide a la otra persona, que tiene que
+Una persona dada de alta todavía no tiene terapia. Hay que abrirle un caso:
+**Abrir ficha** y, arriba a la derecha, el botón **+ Abrir caso**. Se abre una
+ventana donde se elige el **tipo de terapia**; si la terapia elegida es de
+pareja, pide también a la otra persona con **Elegir…**, y esa persona tiene que
 estar dada de alta antes.
+
+El botón está fuera de la ficha, junto al nombre, y no dentro: ahí abajo hay ya
+un desplegable de **Caso** que es para *cambiar de caso en curso*, y los dos
+juntos se confundían.
 
 También se puede abrir en el mismo momento del alta, marcando **Abrirle un caso al
 darlo de alta**.
@@ -267,8 +322,14 @@ con casos abiertos no se puede suprimir.
 
 ### Registrar el consentimiento
 
-En Pacientes, con la persona elegida: **Registrar consentimiento firmado…**, y
-se adjunta el documento escaneado. Queda guardado cifrado dentro de la ficha.
+En la ficha, pestaña **Resumen**, tarjeta **Consentimiento informado**:
+**Registrar consentimiento firmado…**, y se adjunta el documento escaneado. Queda
+guardado cifrado dentro de la ficha. Al lado, un icono y una línea dicen si está
+firmado y con qué versión.
+
+Una vez registrado sale **Ver consentimiento firmado…**, que lo abre en una
+ventana aparte. Se descifra en memoria: para mirarlo no hace falta dejar una
+copia suelta en el disco.
 
 Si el escaneo ya está a la vista en el Explorador, se puede **arrastrar el PDF**
 sobre el recuadro de puntos que hay justo debajo de esos botones y soltarlo ahí:
@@ -295,7 +356,10 @@ cabecera:
 - **Mes**: las semanas completas, con las sesiones escritas dentro de cada
   casilla. Es para encuadrar el mes, no para cobrar; por eso aquí no sale el
   panel de la derecha y sí un pie con las sesiones del mes, lo previsto, lo
-  cobrado y lo que sigue sin cobrar.
+  cobrado y lo que sigue sin cobrar, con la leyenda de los colores al lado. En
+  cada casilla caben cuatro sesiones: si ese día hay más, debajo pone «+2 más» y
+  se ven entrando en el día. Los días de los meses de al lado salen apagados,
+  para no romper la rejilla.
 
 Las flechas **‹** y **›** mueven un día, una semana o un mes, según el modo en
 el que se esté. **Hoy** vuelve al presente.
@@ -305,11 +369,27 @@ la franja que se dibuja va de las 8 a las 20 salvo que haya sesiones fuera de
 ella: entonces se estira lo que haga falta, porque una rejilla más alta se baja
 con la barra y una sesión escondida no se ve nunca.
 
+### Qué se enseña
+
+El botón de la **rueda dentada**, junto a los tres modos, despliega lo que la
+agenda enseña y lo que no. Son dos casillas, y las dos se quedan como se dejen:
+al volver a abrir la aplicación siguen igual.
+
 **Fin de semana** añade el sábado y el domingo. Viene apagado porque la consulta
 no suele pasar sesión esos días y, sin esas dos columnas, las cinco de diario
 son bastante más anchas. Si hay una sesión en sábado o en domingo, su columna
 sale igual aunque el interruptor esté apagado: una preferencia de ancho no puede
 esconder una cita.
+
+**Sesiones canceladas** viene puesto. Al quitarlo, las canceladas —tanto las
+avisadas en plazo como las avisadas tarde— dejan de dibujarse, y la hora que
+ocupaban vuelve a ofrecerse como rato libre para agendar. Las ausencias («no
+asistió») **no** se esconden: esas se cobran íntegras y tienen que verse.
+
+Esconderlas es solo una manera de mirar, no de contar: los pies del día y del
+mes —sesiones, previsto, cobrado y lo que sigue sin cobrar— siguen incluyendo
+todo lo que hay, esté a la vista o no. Una cancelación fuera de plazo se abona, y
+esa deuda no puede desaparecer porque se quite una casilla.
 
 ### Del mes al día
 
@@ -319,11 +399,19 @@ casilla se abre ese día. Es el camino natural de trabajo: el mes enseña dónde
 está la carga y desde ahí se entra a trabajarla, sin volver a **Hoy** y contar
 flechas.
 
+Pulsar directamente **una sesión** del mes también baja a su día, y la deja
+elegida en el panel de la derecha. En el mes no se cobra —no hay panel—, así que
+el clic sobre una sesión lleva al único sitio donde sí se puede.
+
 ### Agendar una sesión
 
 En **Agenda**, el botón **+ Nueva sesión** abre una ventana: elegir el caso, la
-fecha, la hora y la duración. El importe no se pide aquí: sale de la tarifa del
-tipo de terapia del caso.
+fecha, la hora y la duración. El caso se busca escribiendo el nombre del
+paciente, que con la lista larga es más rápido que bajarla entera; entrando en el
+campo sin escribir nada se despliega completa, para cuando no se recuerda el
+nombre exacto. La duración se elige entre las habituales (30, 45, 50, 60, 75 y 90
+minutos). El importe no se pide aquí: sale de la tarifa del tipo de terapia del
+caso.
 
 ![Ventana de Nueva sesión, con el caso, la fecha y la hora elegidos](imagenes/nueva-sesion.png)
 
@@ -337,7 +425,8 @@ Hay un atajo que ahorra teclear la fecha: en **Día** y en **Semana**, al pasar
 el ratón por un rato libre aparece **+ Agendar a las …**. Al pulsarlo se abre la
 misma ventana con ese día y esa hora ya puestos. Los ratos libres se ofrecen de
 media hora en media hora, para que encajen también las sesiones de 30 y de 45
-minutos.
+minutos, y solo de hoy en adelante: en un día pasado no salen, porque agendar
+hacia atrás no se admite y ofrecerlo sería mentir.
 
 ### Avisar al paciente
 
@@ -350,6 +439,10 @@ La misma ventana sale al **reprogramar** una sesión, con los datos de la cita
 nueva y el texto adaptado para que se entienda que es un cambio de hora, no una
 cita más.
 
+El texto con el que aparece redactado se puede cambiar de una vez para siempre
+en [Mensajes al paciente](#38-mensajes-al-paciente); lo que se escriba aquí vale
+solo para este correo.
+
 Si el paciente no tiene correo en la ficha, se puede escribir ahí mismo.
 
 **Por WhatsApp**: clic derecho sobre la sesión en el calendario, **Copiar cita
@@ -361,7 +454,8 @@ se manda al abrir Bitácora, no por su cuenta con el ordenador apagado: si un d�
 no se abre el programa, ese día no se
 avisa a nadie. Es a propósito, porque un envío que falla sin que nadie lo vea es
 peor que no enviarlo. Cada sesión se recuerda una sola vez, así que abrir y
-cerrar el programa varias veces no repite el correo.
+cerrar el programa varias veces no repite el correo. Su texto también se
+reescribe en [Mensajes al paciente](#38-mensajes-al-paciente).
 
 ### Los colores del cobro
 
@@ -376,7 +470,8 @@ tachadas: el color dice cuánto se cobra, y el tachado dice si ocurrió, que son
 dos preguntas distintas.
 
 - **Verde** · «Pagada»: cobrada. Ya se puede facturar. Al elegir la sesión,
-  debajo pone por dónde entró el dinero: «Cobrada por bizum», por ejemplo.
+  debajo pone por dónde entró el dinero: «Cobrada por bizum», por ejemplo. Si en
+  vez de un cobro se le aplicó un crédito, pone «Pagada con crédito».
 - **Neutro** · «Pendiente»: sin pagar, pero todavía queda margen antes de la
   sesión.
 - **Ámbar** · «Sin pagar · menos de 24 h»: sin pagar y ya dentro de las horas de
@@ -387,6 +482,12 @@ dos preguntas distintas.
 - **Azul** · «Sin cargo · crédito»: cancelada sin cargo, pero ya estaba pagada:
   el importe queda como crédito para una sesión de recuperación.
 - **Gris** · «Sin cargo»: cancelada en plazo. No hay nada que cobrar.
+
+De una sesión cobrada sin forma de pago —las de antes de que se guardara, o una
+cubierta con un crédito viejo— el panel avisa de que no consta cómo entró el
+dinero. Se arregla con **Corregir la forma de pago**, y hace falta: la factura la
+lleva impresa, así que sin ella no se puede emitir. Se dice aquí, que es donde se
+arregla, y no al intentar facturar.
 
 ### Cerrar una sesión
 
@@ -455,8 +556,10 @@ crédito no coincide con el de la sesión, la diferencia se ajusta aparte.
 Desde **Pacientes** → **Abrir ficha**.
 
 La ficha reúne los datos de la persona, sus casos abiertos, si tiene el
-consentimiento firmado, sus informes y el material de trabajo que se le
-haya pasado.
+consentimiento firmado, su historia, sus informes, el material de trabajo que se
+le haya pasado y los cuestionarios que se le hayan cumplimentado. Va por
+pestañas: *Resumen*, *Historia*, *Informes*, *Material de trabajo* y
+*Cuestionarios*.
 
 ### Corregir los datos de un paciente
 
@@ -487,23 +590,33 @@ Dos avisos:
 
 ### La historia clínica
 
-Vienen ya puestas las diez secciones de la plantilla, para rellenar debajo de
-cada una. Se escribe como en cualquier procesador de texto: se selecciona un
-trozo y se le da formato con los botones de la barra de arriba —**Título**,
-**Subtítulo**, negrita, cursiva, **Viñeta** y **Cita**—. El botón **Ver cómo
-queda** enseña el resultado tal cual saldrá al guardarlo y al exportarlo.
+La pestaña se abre **en lectura**, con la historia ya compuesta tal y como queda.
+Para escribir se pulsa **Editar**; la primera vez la historia está en blanco y
+vienen ya puestas las diez secciones de la plantilla, para rellenar debajo de cada
+una.
 
-**A tener presente** es un campo aparte, arriba. Lo que se escriba ahí se ve
-nada más abrir la ficha: es para riesgo, o para cualquier cosa que no deba
-pasarse por alto. Nunca se rellena solo a partir del texto de la historia.
+Se escribe como en cualquier procesador de texto: se selecciona un trozo y se le
+da formato con los botones de la barra de arriba —**Título**, **Subtítulo**,
+negrita (Ctrl+B), cursiva (Ctrl+I), **Viñeta** y **Cita**—.
 
-**Guardar historia** para grabar.
+**A tener presente** es un campo aparte, debajo del editor. Lo que se escriba ahí
+se ve nada más abrir la ficha, en un aviso destacado: es para riesgo, o para
+cualquier cosa que no deba pasarse por alto. Nunca se rellena solo a partir del
+texto de la historia.
+
+**Guardar y ver** graba y devuelve a la lectura, que es donde se comprueba cómo
+ha quedado. **Descartar** sale sin guardar.
 
 ### Informes
 
-En la ficha: elegir el caso, escribir un título y **Crear informe**. Se redacta
-igual, con la barra de formato y su vista previa. **Exportar a PDF…** lo saca con
-el logotipo de marca de agua, si se subió uno en Administración.
+En la ficha: elegir el caso arriba, escribir un título y **Crear y escribir**. Se
+redacta con la misma barra de formato que la historia y el mismo **Guardar y
+ver**.
+
+Los informes del caso salen en una lista; al pulsar uno se abre en lectura, con
+**Editar** para retocarlo, **Cerrar informe** para volver a la lista y **Exportar
+a PDF…**, que lo saca con el logotipo de marca de agua si se subió uno en
+Administración.
 
 ### Material de trabajo
 
@@ -622,17 +735,16 @@ cada una. Una sesión sin cobrar no aparece en la lista.
 La factura sale **exenta de IVA** por el artículo 20.Uno.3º de la Ley del IVA,
 que es lo que corresponde a la asistencia sanitaria.
 
-**El concepto es siempre «Terapia de psicología».** No dice la modalidad (individual o
-de pareja): esa factura puede acabar en manos de terceros y el tipo de terapia
-es un dato de salud. Solo cuando se cobra una sesión a la que el paciente no
-asistió, o una cancelación fuera de plazo, se añade «(sesión no realizada)» para
-que se entienda el cargo.
+**El concepto es siempre «Prestación de servicios», y no hay ningún otro.** No dice la
+modalidad (individual o de pareja), ni la fecha de la sesión, ni si llegó a darse: esa
+factura puede acabar en manos de terceros —una mutua, una gestoría, quien la encuentre
+en un cajón— y todo eso, cruzado con un nombre y un NIF, es un dato de salud.
 
 **La factura sale en el impreso de siempre**: arriba, los datos de la consulta y
 el número y la fecha; debajo, los del paciente por casillas (nombre, dirección,
 población, código postal y provincia, que se toman de su domicilio en la ficha);
-en medio, el concepto y el importe; y abajo el cuadro de IVA —al 0 %, por la
-exención—, la forma de pago y el total.
+en medio, el concepto y el importe, sin nada más; y abajo el cuadro de IVA —al 0 %,
+por la exención—, la forma de pago y el total.
 
 **Sin domicilio del paciente y sin forma de pago, la factura no sale.** Son
 contenido obligatorio del impreso, y una factura emitida ya no se puede
@@ -677,7 +789,20 @@ factura. Si el paciente simplemente se ha mudado *después* de que se le
 emitiera, esa factura no estaba mal y no hay nada que rectificar; la dirección
 nueva sale sola en las facturas siguientes.
 
-**Exportar a PDF…** saca cualquiera de ellas para enviarla.
+**Previsualizar…** enseña la factura seleccionada tal y como saldría impresa, en
+una ventana aparte y sin sacar ningún archivo al disco. Sirve para mirarla antes
+de mandarla: que el NIF y la dirección sean los buenos, que el importe cuadre, y
+que una factura ya rectificada salga con su marca de **SIN EFECTO** cruzada. Desde
+esa misma ventana se puede **exportar a PDF** sin volver al listado.
+
+**Enviar al paciente…** se la hace llegar por correo, con el PDF adjunto. Se
+abre una ventana con el mensaje ya redactado —el de **Administración › Mensajes
+al paciente**— y el correo de quien la paga puesto, si lo tiene en su ficha; todo
+se puede retocar antes de que salga. Hace falta la cuenta de Google conectada
+([ver Conectar Google](#35-conectar-google)). Una factura que ya se rectificó no
+se manda: Bitácora dice cuál es la que está vigente.
+
+**Exportar a PDF…** saca cualquiera de ellas para guardarla o mandarla a mano.
 
 ---
 
