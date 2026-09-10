@@ -184,6 +184,34 @@ arranque, [Crear la consulta](#2-crear-la-consulta-solo-la-primera-vez))
 cargando el archivo de credenciales `client_secret.json`. Se abre el navegador,
 se acepta con la cuenta de la consulta, y ya queda.
 
+**El icono de la nube.** Arriba en la barra lateral, junto a «Bitácora», hay un
+icono que dice cómo está la conexión, estés en la sección que estés:
+
+- **Gris**: hay internet y Google funciona.
+- **Ámbar** (nube tachada): hay internet, pero Google no está operativo — la
+  cuenta está sin conectar, hay que volver a conectarla o Google no responde.
+- **Rojo** (wifi tachada): no hay internet.
+
+Al pulsarlo se ve el detalle —Internet, Calendar y Meet, Drive— con dos botones:
+**Comprobar ahora** e **Ir a Conexiones**, que lleva a la pestaña donde se conecta
+la cuenta. Si dice «Hay que volver a conectar», es que Google ha retirado el
+permiso (pasa al cambiar la contraseña de la cuenta): basta con pulsar otra vez
+**Conectar con Google**.
+
+**Si se va la conexión.** Al perderla —o al abrir la aplicación sin ella— sale
+una franja encima de la sección con lo que no va a funcionar mientras dure:
+lo que se agende, mueva o cancele no llegará a Google Calendar, no se pueden
+crear enlaces de Meet ni enviar correos, y las copias no suben a Drive. Se
+cierra con el aspa y no vuelve a salir hasta el siguiente corte; cuando vuelve
+la conexión se va sola.
+
+Se puede seguir trabajando: todo se guarda en el ordenador. Una sesión que se
+agenda, se mueve o se cancela sin conexión queda **marcada** en su detalle de la
+agenda («El último cambio de esta sesión no ha llegado a Google Calendar»).
+Cuando vuelva la conexión, **Pasar a Google Calendar** la deja al día. Lo único
+que no se puede hacer sin conexión es agendar una sesión **con Meet**: el enlace
+lo crea Google.
+
 **Qué ve Google y qué no.** En el calendario solo aparece una etiqueta del tipo
 `Sesión · AR-3f9c1b`: nunca el nombre del paciente ni el motivo. El paciente no
 se añade como invitado del evento. Las copias que suben a Drive van cifradas:
@@ -269,12 +297,43 @@ texto de fábrica solo dice día, hora y enlace.
 Cinco secciones a la izquierda: **Agenda**, **Pacientes**, **Facturación**,
 **Resumen mensual** y **Administración**.
 
-![Listado de pacientes, con el filtro de casos abiertos y los botones de Abrir ficha y Dar de alta](imagenes/pacientes.png)
+![Listado de pacientes, con la rueda de lo que se enseña y los botones de Abrir ficha y Dar de alta](imagenes/pacientes.png)
 
 En la primera columna del listado aparece una **tarta** junto a quien cumple años
 ese día, para poder felicitarle al entrar por la puerta. Sale solo el día del
 cumpleaños y no hace nada más: no cambia la ficha ni avisa a nadie. A quien nació
 un 29 de febrero se le marca el 28 los años que no son bisiestos.
+
+### Qué se enseña en el listado
+
+De entrada, **Pacientes** enseña solo a quien tiene un caso abierto: lo normal es
+buscar a alguien que está en terapia, no repasar a todos los que han pasado por la
+consulta. El botón de la **rueda dentada**, junto a la lupa, despliega dos casillas
+que añaden más gente a la lista:
+
+- **Pacientes sin caso abierto**: quien está dado de alta pero no tiene ninguna
+  terapia en curso, porque terminó o porque todavía no se le ha abierto el caso.
+- **Pacientes archivados**: las fichas archivadas (ver abajo), tengan caso abierto
+  o no. Salen con una **caja** en la primera columna para distinguirlas.
+
+A diferencia de las de la agenda, estas dos casillas no se recuerdan: cada vez que
+se abre la aplicación el listado vuelve a empezar por la gente en terapia.
+
+### Archivar una ficha
+
+Con los años se acumulan fichas de gente que ya no viene y que estorba al buscar.
+**Botón derecho** sobre su fila → **Archivar**, y deja de salir en el listado.
+
+Archivar es solo una manera de ordenar la lista. No cierra sus casos, no borra
+nada, no le quita el correo y no tiene nada que ver con **suprimir** la ficha, que
+es el derecho del RGPD y va por otro sitio. Por eso no pide confirmación: se
+deshace igual de rápido. Para volver a verla, se marca **Pacientes archivados** en
+la rueda; y sobre su fila, el mismo botón derecho ofrece **Desarchivar**.
+
+Si alguien archivado vuelve a terapia, basta con abrirle un caso (o reabrir el que
+tenía): sale solo del archivo, para que no quede escondido justo cuando más se le
+busca. Y si se intenta darlo de alta otra vez, la ventana avisa de que ya existe y
+de que su ficha está archivada.
 
 ### Dar de alta a un paciente
 
