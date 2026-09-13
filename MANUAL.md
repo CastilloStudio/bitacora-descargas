@@ -37,6 +37,10 @@ Después, la aplicación se actualiza sola. Cada vez que se abre comprueba si ha
 versión nueva; cuando la hay, aparece un botón **Actualizar y reiniciar** al pie
 de la barra de la izquierda, y al pulsarlo se reinicia ya actualizada.
 
+Al volver a entrar, una ventana cuenta lo que ha cambiado en esa versión. Se cierra
+al pulsar **Aceptar**, no antes: da tiempo a leerla entera. Sale una sola vez por
+versión.
+
 ---
 
 ## 2. Crear la consulta (solo la primera vez)
@@ -109,6 +113,13 @@ Tres cosas en esta pestaña:
   falta con **Añadir**: se le pone nombre (por ejemplo, «Individual online») y se
   marca **De pareja** si necesita dos personas. Cada una lleva su propio precio,
   que es el que se aplica a las sesiones de los casos abiertos con esa terapia.
+- **Enlace del consentimiento**: debajo de cada terapia, la dirección de la página
+  donde se rellena su consentimiento (cada terapia tiene la suya, porque el documento
+  anuncia su precio y sus condiciones). **Copiar** lo deja en el portapapeles para
+  pegárselo a la persona por WhatsApp o por correo; **Abrir** lo abre en el navegador
+  para comprobarlo. Se guarda con **Guardar tarifas**, como todo lo demás de esta
+  pestaña. Es lo que se le manda *antes* de darla de alta: cuando llegue el PDF
+  firmado, se adjunta en el alta y la ficha se rellena sola.
 - **Retirar una terapia**: el interruptor de cada línea. Una terapia retirada deja
   de ofrecerse al abrir casos nuevos, pero **no se borra nada**: los casos que ya
   la usaban siguen igual y su historial de precios se conserva. Se puede volver a
@@ -206,11 +217,21 @@ cierra con el aspa y no vuelve a salir hasta el siguiente corte; cuando vuelve
 la conexión se va sola.
 
 Se puede seguir trabajando: todo se guarda en el ordenador. Una sesión que se
-agenda, se mueve o se cancela sin conexión queda **marcada** en su detalle de la
-agenda («El último cambio de esta sesión no ha llegado a Google Calendar»).
-Cuando vuelva la conexión, **Pasar a Google Calendar** la deja al día. Lo único
-que no se puede hacer sin conexión es agendar una sesión **con Meet**: el enlace
-lo crea Google.
+agenda, se mueve o se cancela sin conexión queda **marcada**: en la agenda lleva
+una nube tachada junto a la hora, y en su detalle lo dice («El último cambio de
+esta sesión no ha llegado a Google Calendar»). Lo único que no se puede hacer
+sin conexión es agendar una sesión **con Meet**: el enlace lo crea Google.
+
+Mientras haya alguna marcada, encima de la agenda sale una línea que dice
+cuántas son, sea cual sea su fecha. Cuando vuelva la conexión, su botón
+**Pasar a Google Calendar** las deja todas al día de una vez; no hace falta
+acordarse de cuáles eran. Si Google vuelve a fallar a mitad, se para ahí y
+dice cuántas quedan: basta con pulsarlo otra vez más tarde. El mismo botón
+está también en el detalle de cada sesión, para pasar solo esa.
+
+Mientras se sepa que no va a funcionar —sin internet, con Google sin responder
+o con la cuenta sin conectar—, el botón no aparece y en su lugar se dice por
+qué. Vuelve solo en cuanto el indicador de conexión ve que todo va bien.
 
 **Qué ve Google y qué no.** En el calendario solo aparece una etiqueta del tipo
 `Sesión · AR-3f9c1b`: nunca el nombre del paciente ni el motivo. El paciente no
@@ -337,9 +358,11 @@ de que su ficha está archivada.
 
 ### Dar de alta a un paciente
 
-**Pacientes** → **Dar de alta**. Se abre una ventana: nombre, apellidos, DNI o
-NIE, fecha de nacimiento, teléfono y correo (el correo es opcional, pero sin él
-no se le pueden enviar avisos de cita).
+**Pacientes** → **Dar de alta**. Se abre una ventana: arriba, el consentimiento
+firmado, si ya lo trae (ver [Registrar el consentimiento](#registrar-el-consentimiento):
+si viene de la web de la consulta, rellena él solo lo demás); debajo, DNI o NIE,
+nombre, apellidos, fecha de nacimiento, teléfono y correo (el correo es opcional,
+pero sin él no se le pueden enviar avisos de cita).
 
 Debajo va el **domicilio**, también opcional. Se puede dejar en blanco y
 completarlo después desde la ficha, pero hace falta para poder facturarle: la
@@ -362,7 +385,10 @@ un desplegable de **Caso** que es para *cambiar de caso en curso*, y los dos
 juntos se confundían.
 
 También se puede abrir en el mismo momento del alta, marcando **Abrirle un caso al
-darlo de alta**.
+darlo de alta**. Ahí, si la terapia es de pareja, la otra persona no hace falta
+que exista antes: **Darla de alta a la vez** la da de alta en la misma ventana (ver
+[Registrar el consentimiento](#registrar-el-consentimiento), donde se cuenta con
+la pareja).
 
 Las sesiones y los informes cuelgan del caso, no de la persona. Una misma
 persona puede tener a la vez un caso individual y uno de pareja, y cada uno
@@ -381,7 +407,43 @@ con casos abiertos no se puede suprimir.
 
 ### Registrar el consentimiento
 
-En la ficha, pestaña **Resumen**, tarjeta **Consentimiento informado**:
+Si el paciente trae ya el consentimiento firmado, lo más cómodo es adjuntarlo en
+el propio **Dar de alta**: la tarjeta de arriba del todo, **Consentimiento
+informado firmado**, admite el PDF con **Adjuntar PDF firmado…** o arrastrándolo
+sobre el recuadro. No se guarda nada hasta pulsar **Dar de alta**; si el alta no
+sale (un DNI repetido, por ejemplo), el PDF tampoco se queda guardado. Si se
+adjunta el que no era, **Quitar**.
+
+Si el consentimiento se firmó en la web de la consulta, **sus datos se copian
+solos al formulario**: nombre, apellidos, DNI, fecha de nacimiento, teléfono,
+correo y domicilio. La provincia sale del código postal y el municipio, del lugar
+donde se firmó, que conviene revisar. Todo queda a la vista para corregirlo antes
+de pulsar **Dar de alta**, y como fecha de firma se guarda la que dice el
+documento. Un consentimiento escaneado en papel se adjunta igual, pero sin copiar
+nada: los datos se teclean.
+
+Si es un **consentimiento de pareja**, el diálogo se ensancha y pone a las dos
+personas una al lado de la otra, cada una con sus datos, y el caso que se ofrece
+abrir es el de pareja. Si una de las dos ya tenía ficha (mismo DNI), el diálogo lo
+dice al adjuntar y se usa la suya, sin cambiar sus datos: solo se le registra el
+consentimiento nuevo.
+
+![Ventana de dar de alta con un consentimiento de pareja: las dos personas una al lado de la otra](imagenes/dar-de-alta-pareja.png)
+
+Lo mismo se puede hacer **a mano**, sin consentimiento: al marcar **Abrirle un
+caso** con una terapia de pareja, la otra persona se puede **Elegir…** entre las
+fichas o **Darla de alta a la vez**. Con lo segundo aparece su columna al lado; si
+al teclear su DNI resulta que ya tenía ficha, se dice y se usa la suya. **Quitar**,
+en su cabecera, vuelve al alta de una sola persona. Un consentimiento escaneado
+adjuntado así se registra a las dos; uno individual de la web no, porque lo firmó
+una sola persona: para la pareja hace falta el de pareja.
+
+Si quien llega **ya tuvo ficha** —alguien que vuelve al cabo del tiempo—, el alta
+no la puede crear otra vez: avisa de que ese DNI ya existe y ofrece **Abrir su
+ficha**, que lleva directamente allí para registrarle el consentimiento nuevo.
+
+Si no, se registra después desde la ficha, pestaña **Resumen**, tarjeta
+**Consentimiento informado**:
 **Registrar consentimiento firmado…**, y se adjunta el documento escaneado. Queda
 guardado cifrado dentro de la ficha. Al lado, un icono y una línea dicen si está
 firmado y con qué versión.
@@ -389,6 +451,13 @@ firmado y con qué versión.
 Una vez registrado sale **Ver consentimiento firmado…**, que lo abre en una
 ventana aparte. Se descifra en memoria: para mirarlo no hace falta dejar una
 copia suelta en el disco.
+
+**Los consentimientos no se pisan.** Al registrar uno nuevo, el anterior no
+desaparece: pasa a **Anteriores**, debajo, con su fecha y su versión, y se puede
+abrir igual con **Ver…**. El de arriba es el que vale hoy; los de abajo son la
+prueba de a qué consintió mientras estuvieron vigentes, que es lo que hay que
+poder enseñar si alguna vez se discute una sesión de entonces. Todos salen
+también en el expediente del derecho de acceso.
 
 Si el escaneo ya está a la vista en el Explorador, se puede **arrastrar el PDF**
 sobre el recuadro de puntos que hay justo debajo de esos botones y soltarlo ahí:
@@ -504,9 +573,25 @@ solo para este correo.
 
 Si el paciente no tiene correo en la ficha, se puede escribir ahí mismo.
 
-**Por WhatsApp**: clic derecho sobre la sesión en el calendario, **Copiar cita
-para WhatsApp**. Copia el mismo texto del correo al portapapeles, listo para pegarlo
-en la conversación. No envía nada: solo copia.
+**Por WhatsApp**: clic derecho sobre la sesión en el calendario, **Abrir en
+WhatsApp**. Se abre WhatsApp en la conversación con el paciente (el teléfono de su
+ficha) y con el mismo texto del correo ya escrito. **No se envía solo**: se revisa y
+se pulsa Intro. No hace falta tener al paciente guardado en los contactos del móvil.
+
+Si el ordenador no tiene WhatsApp instalado, se abre la página de WhatsApp en el
+navegador, que ofrece seguir en WhatsApp Web. Y el texto queda copiado de todas
+formas: si alguna vez se abre el chat vacío, basta pegarlo.
+
+Si el teléfono de la ficha no se entiende (lleva letras, o dos números), Bitácora
+no abre nada y pide corregirlo en la ficha: es preferible a escribir a quien no es.
+Un número de fuera de España se escribe con su prefijo, como `+44 7700 900123`.
+
+**Copiar invitación**, en el mismo menú, solo copia el texto, para pegarlo
+donde se quiera.
+
+WhatsApp no deja que un programa envíe mensajes por su cuenta desde un número
+normal, y es mejor así: las formas de saltárselo incumplen sus condiciones y pueden
+acabar con el número bloqueado. Por eso los recordatorios automáticos van por correo.
 
 **El recordatorio automático** (el que se configura en [Tarifas](#32-tarifas))
 se manda al abrir Bitácora, no por su cuenta con el ordenador apagado: si un día
@@ -920,7 +1005,12 @@ correo de inmediato, pero los datos se conservan **cinco años**, que es el
 mínimo que exige la Ley 41/2002. Ese plazo se cuenta desde el **cierre del
 último caso** de la persona (por eso hay que cerrarlos antes de suprimir), no
 desde el día de la supresión. Pasado el plazo, **Destruir las caducadas** en
-Administración las elimina de verdad.
+Administración las elimina de verdad: se van los datos identificativos, la
+historia clínica, los informes, el material de trabajo y **los documentos de sus
+consentimientos**, que son los que llevan dentro su nombre, su DNI y su firma. De
+cada consentimiento queda solo el rastro —cuándo se firmó y qué versión—, marcado
+como «documento destruido», que ya no identifica a nadie y sigue demostrando que
+se consintió. Las facturas no se van: tienen su propio plazo fiscal.
 
 **Bloqueo por intentos.** Cinco contraseñas fallidas seguidas bloquean el
 acceso un rato. Es a propósito. Los códigos de verificación fallidos cuentan
