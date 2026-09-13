@@ -316,7 +316,7 @@ texto de fábrica solo dice día, hora y enlace.
 ## 4. El día a día
 
 Cinco secciones a la izquierda: **Agenda**, **Pacientes**, **Facturación**,
-**Resumen mensual** y **Administración**.
+**Cuentas** y **Administración**.
 
 ![Listado de pacientes, con la rueda de lo que se enseña y los botones de Abrir ficha y Dar de alta](imagenes/pacientes.png)
 
@@ -950,14 +950,19 @@ se manda: Bitácora dice cuál es la que está vigente.
 
 ---
 
-## 9. El resumen para la gestoría
+## 9. Cuentas: ingresos, gastos y balance
 
-![Resumen mensual, con las citas por estado y el detalle de cobros del mes](imagenes/resumen-mensual.png)
+![Cuentas, pestaña de ingresos, con las citas por estado y el detalle de cobros del mes](imagenes/resumen-mensual.png)
 
-**Resumen mensual** → elegir el mes (el selector va por mes y año, sin día). Sale
-lo que suele pedir la gestoría cada mes:
-cuántas sesiones hubo por estado (realizadas, no asistió, canceladas…), el total
-cobrado, y el detalle de cada cobro.
+**Cuentas** → elegir el mes arriba a la derecha (el selector va por mes y año,
+sin día). El mes vale para las tres pestañas: **Ingresos**, **Gastos** y
+**Balance**. Al entrar se abre **Ingresos**.
+
+### Ingresos
+
+Lo que suele pedir la gestoría cada mes: cuántas sesiones hubo por estado
+(realizadas, no asistió, canceladas…), el total cobrado, y el detalle de cada
+cobro.
 
 **Va por lo cobrado, no por lo facturado.** Si una sesión de agosto se cobró en
 agosto pero no se factura hasta septiembre, cuenta en el resumen de agosto — el
@@ -987,6 +992,24 @@ vacío.
 
 **Exportar a PDF…** lo saca ya con los datos fiscales y el logotipo, listo para
 enviarlo.
+
+### Gastos
+
+Los gastos de la consulta: alquiler, cuota del colegio, seguro, material…
+**Anotar gasto** abre una ventana con el concepto, el importe y la fecha; se
+rellena y se pulsa **Anotar**. La fecha se propone dentro del mes que se está
+mirando; si se elige una de otro mes, el gasto va a ese mes y la aplicación
+avisa de dónde ha ido. Si falta algo, la ventana no se cierra y dice qué falta.
+La **papelera** de cada fila quita el gasto.
+
+Por ahora los gastos solo se ven aquí: el PDF para la gestoría sigue llevando
+solo los cobros.
+
+### Balance
+
+Arriba, lo cobrado, lo gastado y el balance del mes elegido. Debajo, el **año
+mes a mes** con las mismas tres cifras y el total del año, con el mes elegido en
+negrita. Un balance negativo sale en rojo.
 
 ---
 
