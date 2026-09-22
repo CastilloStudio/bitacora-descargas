@@ -1,7 +1,14 @@
 ---
 layout: base
-title: Bitácora
-description: Gestión de consulta de psicología — descarga y manual de uso
+# aplicacion: activa en base.html los datos estructurados del producto. Solo la
+# portada los lleva; repetirlos en el manual sería declarar dos veces lo mismo.
+aplicacion: true
+# oferta: lo único que se dice del precio por ahora. Sale en la línea bajo el
+# botón y en los datos estructurados; vaciar esta línea lo retira de los dos
+# sitios a la vez, sin tocar ni la plantilla ni el JSON-LD.
+oferta: Primer mes gratis
+title: Bitácora — Gestión de consulta de psicología
+description: Agenda, historia clínica, informes y facturación para tu consulta de psicología. Aplicación de escritorio para Windows, con los datos cifrados en tu equipo.
 ---
 
 <section class="hero">
@@ -13,7 +20,7 @@ description: Gestión de consulta de psicología — descarga y manual de uso
     </p>
 
     <div class="hero-acciones">
-      <a class="boton-descarga" href="https://github.com/emiliocastilo/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe">
+      <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <path d="M7 10l5 5 5-5"></path>
@@ -22,12 +29,12 @@ description: Gestión de consulta de psicología — descarga y manual de uso
         <span>Descargar para Windows</span>
       </a>
       <div class="hero-meta">
-        {% if site.version %}<span>Versión {{ site.version }}</span><span class="sep">·</span>{% endif %}<span>Windows 10 y 11</span><span class="sep">·</span><span>se actualiza sola</span>
+        {% if site.version %}<span>Versión {{ site.version }}</span><span class="sep">·</span>{% endif %}<span>Windows 10 y 11</span><span class="sep">·</span><span>se actualiza sola</span>{% if page.oferta %}<span class="sep">·</span><span>{{ page.oferta | downcase }}</span>{% endif %}
       </div>
     </div>
 
     <div class="hero-mas">
-      <a href="https://github.com/emiliocastilo/bitacora-descargas/releases">Ver todas las versiones y sus notas &rarr;</a>
+      <a href="https://github.com/CastilloStudio/bitacora-descargas/releases">Ver todas las versiones y sus notas &rarr;</a>
     </div>
   </div>
 </section>

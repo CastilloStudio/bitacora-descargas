@@ -1,9 +1,15 @@
 # Configuración de GitHub Pages del repositorio público de descargas
-# (emiliocastilo/bitacora-descargas). Este archivo, index.html, los _layouts y
-# el manual se copian allí desde el flujo de release; no se editan en el repo
-# público a mano. El flujo añade además una línea "version: X.Y.Z" al final.
+# (CastilloStudio/bitacora-descargas). Todo lo que hay en sitio-descargas/ se
+# copia allí desde el flujo de release; no se edita en el repo público a mano.
+# El flujo añade además una línea "version: X.Y.Z" al final.
 title: Bitácora
 description: Gestión de consulta de psicología — descarga y manual de uso
+
+# Dominio propio, fijado por el CNAME de al lado. Hace falta declararlo aquí
+# porque de él salen las URL absolutas: las etiquetas Open Graph y el sitemap
+# no admiten rutas relativas, y una og:image relativa no la carga nadie.
+url: https://bitacora.castillostudio.es
+lang: es-ES
 
 # Sin tema: la portada (index.html) y el manual comparten _layouts/base.html.
 # El manual, sin cabecera Jekyll propia, entra por _layouts/pagina.html.
@@ -17,12 +23,14 @@ defaults:
 #  - optional-front-matter: procesa MANUAL.md aunque no lleve cabecera Jekyll
 #  - relative-links: reescribe [x](MANUAL.md) -> MANUAL.html
 #  - titles-from-headings: usa el primer "# " como título de la página
+#  - sitemap: genera /sitemap.xml, al que apunta robots.txt
 plugins:
   - jekyll-optional-front-matter
   - jekyll-relative-links
   - jekyll-titles-from-headings
+  - jekyll-sitemap
 
 exclude:
   - README.md
 
-version: 0.1.13
+version: 0.1.14

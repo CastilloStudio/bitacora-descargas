@@ -12,12 +12,12 @@ sola vez; a partir de «El día a día» está lo que se usa siempre.
 
 1. Descargar el instalador desde este enlace, que siempre apunta a la última
    versión:
-   <https://github.com/emiliocastilo/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe>
+   <https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe>
 2. Ejecutarlo. Sale una ventanita de progreso y, al terminar, la aplicación se
    abre sola.
 
 > Si el enlace no funcionara, abrir
-> <https://github.com/emiliocastilo/bitacora-descargas/releases> y descargar
+> <https://github.com/CastilloStudio/bitacora-descargas/releases> y descargar
 > **Bitacora-win-Setup.exe** de la versión de arriba. En esa lista hay más
 > archivos (uno acabado en `.nupkg`, otro llamado `RELEASES`…); no hacen falta.
 
@@ -128,6 +128,10 @@ Tres cosas en esta pestaña:
   se cobra entera. Vienen 24 puestas.
 - **Recordar al paciente**: horas antes de la sesión para enviarle el correo de
   recordatorio. Un 0 significa no enviar ninguno.
+- **Aviso de Google Calendar**: minutos antes de cada sesión para que el propio
+  calendario te avise, en el móvil o en el ordenador. Vienen 15; un 0 significa sin
+  aviso. Es para ti, no para el paciente, y vale para las sesiones que se agenden o
+  se toquen a partir de ese momento.
 - **Plazo para recuperar una sesión**: días que se dan por defecto cuando el
   pago de una sesión cancelada se deja como crédito. El consentimiento anuncia
   un mes (30); se puede ampliar caso por caso, con un motivo.
@@ -187,8 +191,14 @@ hora automática activada en ambos no hay problema.
 
 ### 3.5 Conectar Google
 
-Sirve para tres cosas: meter las sesiones en el calendario, crear los enlaces
-de Meet, y subir las copias de seguridad a Drive.
+Sirve para meter las sesiones en el calendario, crear los enlaces de Meet, subir
+las copias de seguridad a Drive y dejar en Drive los papeles del mes para la
+gestoría.
+
+**Cómo se ven las sesiones en Google Calendar.** Cada una lleva un color según el
+cobro: **amarillo** si está pendiente, **verde** si está pagada y **morado** si es
+una recuperación cubierta con crédito. Cambia sola al marcar o anular el pago. Y
+cada una avisa unos minutos antes (ver [Tarifas](#32-tarifas)).
 
 Se conecta desde **Administración › Conexiones** (o en la pantalla del primer
 arranque, [Crear la consulta](#2-crear-la-consulta-solo-la-primera-vez))
@@ -233,10 +243,30 @@ Mientras se sepa que no va a funcionar —sin internet, con Google sin responder
 o con la cuenta sin conectar—, el botón no aparece y en su lugar se dice por
 qué. Vuelve solo en cuanto el indicador de conexión ve que todo va bien.
 
+**Si se mueve o se borra una sesión desde Google Calendar.** Bitácora mira, al
+abrir la agenda y como mucho cada dos minutos, si alguna de sus sesiones se ha
+movido o borrado en Google (por ejemplo, desde el móvil). **No lo aplica solo**:
+moverla o borrarla allí se salta el aviso de 24 horas, el crédito de sesión y el
+aviso al paciente. Encima de la agenda sale una línea con cuántas hay, y
+**Revisar** lleva a la primera y la deja elegida. En su detalle:
+
+- Si **se movió**: **Aceptar la hora de Google** la reprograma también aquí y
+  ofrece avisar al paciente del cambio, como al reprogramar. **Dejarla en Google
+  como estaba** la devuelve a su hora en el calendario.
+- Si **se borró** y de verdad no se va a dar: se cancela con los botones de
+  siempre (con cargo, con crédito o devolviendo el pago), y la línea desaparece.
+  Si se borró sin querer: **Volver a ponerla en Google**.
+
+Si en Google se vuelve a dejar a su hora, el aviso se quita solo. Alargar o acortar
+el evento allí no cuenta: solo la hora de inicio, que es la que tiene el paciente.
+
 **Qué ve Google y qué no.** En el calendario solo aparece una etiqueta del tipo
 `Sesión · AR-3f9c1b`: nunca el nombre del paciente ni el motivo. El paciente no
-se añade como invitado del evento. Las copias que suben a Drive van cifradas:
-Google recibe bytes que no puede leer.
+se añade como invitado del evento. Bitácora solo mira sus propias sesiones: las
+citas personales del mismo calendario no se leen. Las copias que suben a Drive van
+cifradas: Google recibe bytes que no puede leer. Lo único que queda legible en Drive
+es la carpeta de la gestoría, con el resumen de cobros y las facturas (ver
+[Subir a Drive para la gestoría](#subir-a-drive-para-la-gestoría)).
 
 ### 3.6 Informes de diagnóstico
 
@@ -992,6 +1022,27 @@ vacío.
 
 **Exportar a PDF…** lo saca ya con los datos fiscales y el logotipo, listo para
 enviarlo.
+
+### Subir a Drive para la gestoría
+
+**Subir a Drive para la gestoría** deja el resumen del mes y cada factura en su
+PDF en una carpeta de tu Google Drive: `Bitácora · Gestoría`, con una carpeta por
+año y dentro una por mes (`09 septiembre`). Así no hace falta exportar y mandar
+nada: la gestoría lo encuentra allí.
+
+- **Compártela una sola vez**, desde Drive: botón derecho sobre
+  `Bitácora · Gestoría` → Compartir, y escribe la dirección de la gestoría.
+  **Nunca** con «cualquiera que tenga el enlace»: estos PDF van legibles, no
+  cifrados como las copias.
+- **Se puede repetir.** Si después rectificas una factura de ese mes, vuelve a
+  pulsarlo: la carpeta del mes se sustituye entera por lo que dice la aplicación
+  ahora. La factura rectificada va también, cruzada por «SIN EFECTO».
+- **Se borra sola.** Cada vez que subes, la aplicación borra de Drive los años que
+  ya pasan el plazo de conservación (seis desde que terminó cada año). Confírmalo
+  con tu gestoría.
+
+Antes de usarlo, activa la verificación en dos pasos en tu cuenta de Google: con
+estos papeles en Drive, esa cuenta pasa a protegerlos.
 
 ### Gastos
 

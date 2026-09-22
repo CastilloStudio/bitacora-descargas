@@ -3,12 +3,12 @@
 Aquí viven **los instaladores y el manual** de Bitácora, la aplicación de gestión de
 la consulta. El código fuente está en un repositorio privado aparte.
 
-Web: **https://emiliocastilo.github.io/bitacora-descargas/**
+Web: **https://bitacora.castillostudio.es/**
 
 ## Instalar
 
 Descarga el instalador más reciente:
-<https://github.com/emiliocastilo/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe>
+<https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe>
 
 O ve a [Releases](../../releases) y coge el `Bitacora-win-Setup.exe` de la versión de
 arriba. Una vez instalada, la aplicación se actualiza sola: no hace falta volver por aquí.
@@ -17,10 +17,10 @@ arriba. Una vez instalada, la aplicación se actualiza sola: no hace falta volve
 
 La guía de uso completa está en **[MANUAL.md](MANUAL.md)** (y en la web de arriba).
 Cada versión adjunta además su manual en su
-[release](https://github.com/emiliocastilo/bitacora-descargas/releases).
+[release](https://github.com/CastilloStudio/bitacora-descargas/releases).
 
-Este archivo, `index.html`, los `_layouts/`, `_config.yml` y `MANUAL.md` se generan
-desde el repositorio del código en cada release; no se editan aquí a mano.
+Este archivo, `index.html`, los `_layouts/`, `_config.yml`, `CNAME` y `MANUAL.md` se
+generan desde el repositorio del código en cada release; no se editan aquí a mano.
 
 ## Por qué este repositorio existe
 

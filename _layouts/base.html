@@ -3,12 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 {% assign titulo = page.title | default: site.title %}
+{% assign descripcion = page.description | default: site.description %}
+{% assign url_pagina = page.url | absolute_url %}
+{% assign imagen_social = "/imagen-social.png" | absolute_url %}
+
 <title>{{ titulo }}</title>
-<meta name="description" content="{{ page.description | default: site.description }}">
+<meta name="description" content="{{ descripcion }}">
+
+<!-- Canónica: el sitio se sirve también por castillostudio.github.io, que
+     redirige aquí. Sin esto, un buscador podría indexar las dos y repartir
+     la señal entre ellas. -->
+<link rel="canonical" href="{{ url_pagina }}">
+
+<link rel="icon" href="{{ "/favicon.ico" | relative_url }}" sizes="32x32">
+<link rel="icon" href="{{ "/icono.svg" | relative_url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ "/icono-180.png" | relative_url }}">
+<meta name="theme-color" content="#2E7D52">
+
+<!-- Open Graph: lo que se ve al pegar un enlace en WhatsApp, Slack, Telegram
+     o Bluesky. La imagen tiene que ser absoluta o no la carga ninguna de las
+     dos; se genera con assets/marca/generar-imagen-social.py. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bitácora">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="{{ titulo }}">
+<meta property="og:description" content="{{ descripcion }}">
+<meta property="og:url" content="{{ url_pagina }}">
+<meta property="og:image" content="{{ imagen_social }}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bitácora: tu consulta de psicología, en un solo sitio. Con la agenda semanal de la aplicación al lado.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ titulo }}">
+<meta name="twitter:description" content="{{ descripcion }}">
+<meta name="twitter:image" content="{{ imagen_social }}">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+
+{% if page.aplicacion %}
+<!-- Datos estructurados. Los buscadores los usan para los resultados
+     enriquecidos, y los asistentes de IA para responder «qué es Bitácora»
+     sin tener que adivinarlo del texto. Todo lo que se afirma aquí está
+     también visible en la página: describir de más es lo que hace que un
+     asistente acabe repitiendo algo que no es verdad.
+
+     El bloque "offers" declara el primer mes gratis y nada más: sin importe
+     ni periodicidad, porque todavía no se hacen públicos. Un "price: 0" aquí
+     sería falso en cuanto empiece a cobrarse, y es de lo que más tarda en
+     desaprenderse un asistente. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Bitácora",
+  "url": {{ "/" | absolute_url | jsonify }},
+  "description": "Aplicación de escritorio para gestionar una consulta de psicología: agenda y sesiones, historia clínica, informes y facturación. Los datos se guardan cifrados en el equipo de la profesional, sin nube.",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "Gestión de consulta de psicología",
+  "operatingSystem": "Windows 10, Windows 11",{% if site.version %}
+  "softwareVersion": {{ site.version | jsonify }},{% endif %}
+  "inLanguage": "es-ES",{% if page.oferta %}
+  "offers": {
+    "@type": "Offer",
+    "name": {{ page.oferta | jsonify }},
+    "description": "El primer mes de uso es gratuito.",
+    "availability": "https://schema.org/InStock"
+  },{% endif %}
+  "downloadUrl": "https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe",
+  "releaseNotes": "https://github.com/CastilloStudio/bitacora-descargas/releases",
+  "softwareHelp": {{ "/MANUAL.html" | absolute_url | jsonify }},
+  "screenshot": {{ "/imagenes/agenda.png" | absolute_url | jsonify }},
+  "image": {{ imagen_social | jsonify }},
+  "featureList": [
+    "Agenda semanal de sesiones con recordatorios por correo",
+    "Estado de cobro de cada sesión",
+    "Historia clínica, evolución e informes",
+    "Facturación por sesión o por mes y resumen mensual",
+    "Cifrado de los datos en el propio equipo, sin nube",
+    "Actualización automática"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "CastilloStudio",
+    "sameAs": "https://github.com/CastilloStudio"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Por qué Windows muestra un aviso al instalar Bitácora?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mientras el ejecutable no está firmado, SmartScreen muestra «Windows protegió tu PC». Hay que pulsar Más información y después Ejecutar de todas formas. No es un aviso de virus: es lo normal en un programa sin certificado de firma de código."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dónde se guardan los datos de los pacientes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los datos viven cifrados en el equipo de la profesional y no salen de ahí. Bitácora no usa nube para la historia clínica."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hay que volver a descargar Bitácora para actualizarla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Una vez instalada, cada versión nueva llega sola y la aplicación avisa para aplicarla cuando convenga."
+      }
+    }
+  ]
+}
+</script>
+{% endif %}
 <style>
   :root {
     --tinta: #1C1B19;
@@ -292,7 +410,7 @@
   </a>
   <nav class="nav">
     <a href="MANUAL.html">Manual</a>
-    <a href="https://github.com/emiliocastilo/bitacora-descargas/releases">Todas las versiones</a>
+    <a href="https://github.com/CastilloStudio/bitacora-descargas/releases">Todas las versiones</a>
   </nav>
 </header>
 
@@ -307,7 +425,7 @@
     </p>
     <div class="pie-enlaces">
       <a href="MANUAL.html">Manual</a>
-      <a href="https://github.com/emiliocastilo/bitacora-descargas/releases">Versiones</a>
+      <a href="https://github.com/CastilloStudio/bitacora-descargas/releases">Versiones</a>
     </div>
   </div>
 </footer>

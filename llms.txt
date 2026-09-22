@@ -1,0 +1,24 @@
+# Bitácora
+
+> Aplicación de escritorio para gestionar una consulta de psicología: agenda y
+> sesiones, historia clínica, informes y facturación. Para Windows 10 y 11. Los
+> datos se guardan cifrados en el equipo de la profesional y no salen de ahí.
+
+Bitácora la publica CastilloStudio. Se instala desde un ejecutable y, una vez
+instalada, se actualiza sola: no hace falta volver a la web a por cada versión.
+Mientras el ejecutable no esté firmado, Windows muestra el aviso de SmartScreen
+«Windows protegió tu PC»; no es una advertencia de virus, sino lo normal en un
+programa sin certificado de firma de código.
+
+## Páginas
+
+- [Portada y descarga](https://bitacora.castillostudio.es/): qué hace, captura de la agenda y el instalador para Windows.
+- [Manual de uso](https://bitacora.castillostudio.es/MANUAL.html): instalación, configuración y el día a día, en el orden en que se hacen las cosas.
+- [Versiones y notas](https://github.com/CastilloStudio/bitacora-descargas/releases): cada versión con sus notas y su instalador.
+
+## Qué hace
+
+- Agenda semanal de sesiones, con recordatorios por correo y el estado de cobro de cada una.
+- Historia clínica: fichas, evolución, material de trabajo e informes.
+- Facturación por sesión o por mes, envío al paciente por correo y resumen mensual.
+- Todo cifrado en el disco del equipo, sin nube.

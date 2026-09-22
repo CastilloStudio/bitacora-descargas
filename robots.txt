@@ -1,0 +1,13 @@
+# Se deja entrar a todo el mundo, buscadores y rastreadores de IA por igual.
+# Es deliberado: que un asistente pueda leer esta página es justo lo que hace
+# que responda bien cuando alguien le pregunta por software de gestión para una
+# consulta de psicología. Aquí no hay nada privado; los datos de pacientes ni
+# siquiera salen del equipo de la profesional.
+#
+# Si algún día hubiera que cerrar la puerta a alguno, se hace nombrándolo aquí
+# (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot...), no quitando
+# el Allow de abajo.
+User-agent: *
+Allow: /
+
+Sitemap: https://bitacora.castillostudio.es/sitemap.xml
