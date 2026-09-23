@@ -1,0 +1,25 @@
+MANUAL.md
+  s_446a5d33ca68ce::t_4d84987f9a1e20 19-22,60,70-71,75,93,487-488,763-764,795-798,1154-1155,1220-1222
+_layouts/base.html
+  s_446a5d33ca68ce::t_7d22394b829a83 56,148-150,250-259,262,267-268,272-284,286,504,509
+index.html
+  s_446a5d33ca68ce::t_c3d3d62f60e4f6 16,33,44,55,61-64
+llms.txt
+  s_446a5d33ca68ce::t_1e34570aba03f5 10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "978d575bd1c5d636a7413f3e20c1a5d984bd5aa1",
+  "prompts": {},
+  "sessions": {
+    "s_446a5d33ca68ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "03aecd2b-7204-49ba-908e-fac71ee79ef1",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Emilio <emiliocastillogonzalez@gmail.com>"
+    }
+  }
+}
