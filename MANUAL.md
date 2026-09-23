@@ -16,9 +16,10 @@ Un programa de escritorio para llevar una consulta de psicología entera: **a
 quién atiendes, cuándo, si te ha pagado y qué has escrito de cada sesión.**
 
 Se instala en el ordenador y **los datos se quedan ahí, cifrados**. No hay
-servidor, no hay cuenta de empresa y nadie más los puede leer. Lo único que sale
-fuera son las copias de seguridad —que salen ya cifradas— y lo que tú decidas
-mandar: un correo de cita, una factura.
+servidor, no hay cuenta de empresa y nadie más los puede leer. De ahí solo salen
+las copias de seguridad —que salen ya cifradas— y lo que tú decidas mandar: un
+correo de cita, una factura. **Ningún dato de paciente sale por ninguna otra
+vía.**
 
 ### Lo que hace, en cinco líneas
 
@@ -56,11 +57,7 @@ automático de cita, que se configura una vez y va solo.
 
 Funciona en **Windows**, **Mac** y **Linux**, y es la misma aplicación en los
 tres: las pantallas, los datos y todo lo que cuenta este manual son idénticos.
-Lo único que cambia es cómo se instala y el aviso que cada sistema da la primera
-vez.
-
-Ese aviso sale porque el programa todavía no lleva firma de empresa. **En
-ninguno de los tres es un aviso de virus.** Ve a lo tuyo y sáltate el resto.
+Lo único que cambia es qué archivo se descarga.
 
 ### En Windows
 
@@ -69,30 +66,17 @@ ninguno de los tres es un aviso de virus.** Ve a lo tuyo y sáltate el resto.
 2. Ejecutarlo. Sale una ventanita de progreso y, al terminar, la aplicación se
    abre sola.
 
-**Windows dirá que no reconoce el programa**: una pantalla azul, «Windows
-protegió tu PC». Pulsar **Más información** → **Ejecutar de todas formas**.
-
 Los datos van a `Documentos\Bitacora`. Si Documentos estuviera sincronizado con
-OneDrive, van a una carpeta local del equipo, para no corromper la base.
+OneDrive, van a una carpeta local del equipo: la base trabaja en disco local, y a
+la nube van las copias.
 
 ### En Mac
 
-Hace falta un Mac con **Apple Silicon** (M1 o posterior). Los Mac con procesador
-Intel no pueden con esta versión.
+Hace falta un Mac con **Apple Silicon** (M1 o posterior).
 
 1. Descargar el instalador:
    <https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-osx-Setup.pkg>
 2. Abrirlo y seguir los pasos. Bitácora queda en **Aplicaciones**.
-
-**La primera vez, el Mac no la dejará abrir con doble clic.** Dirá que no se
-puede comprobar quién la hizo. Solo esa primera vez:
-
-1. Abrir **Aplicaciones** en el Finder.
-2. **Control + clic** sobre Bitácora (o clic con el botón derecho) → **Abrir**.
-3. Sale el mismo aviso, pero ahora con un botón **Abrir**. Pulsarlo.
-
-A partir de ahí se abre con doble clic como cualquier otra, y no vuelve a
-preguntar —tampoco cuando se actualice sola—.
 
 Los datos van a `Documentos/Bitacora`. Si tuvieras Escritorio y Documentos
 sincronizados con iCloud, van a una carpeta local del equipo.
@@ -106,8 +90,7 @@ sincronizados con iCloud, van a una carpeta local del equipo.
    `chmod +x Bitacora-linux-x86_64.AppImage`.
 3. Abrirlo con doble clic. No instala nada: el AppImage *es* la aplicación.
 
-Linux no da ningún aviso de procedencia. Los datos van a una carpeta
-**Bitacora** dentro de tu carpeta personal.
+Los datos van a una carpeta **Bitacora** dentro de tu carpeta personal.
 
 ### Lo que vale para los tres
 
@@ -501,8 +484,8 @@ su prefijo, `+44 7700 900123`.
 **Copiar invitación**, en el mismo menú, solo copia el texto.
 
 > WhatsApp no deja que un programa envíe mensajes por su cuenta desde un número
-> normal, y es mejor así: saltárselo incumple sus condiciones y puede acabar con
-> el número bloqueado. Por eso los recordatorios automáticos van por correo.
+> normal, y es mejor así: el mensaje sale de tu mano y lo ves antes de mandarlo.
+> Los recordatorios automáticos van por correo.
 
 **El recordatorio automático** —el de [Tarifas](#42-tarifas-y-plazos)— se manda
 al abrir Bitácora, no por su cuenta con el ordenador apagado: si un día no se
@@ -777,8 +760,8 @@ importe y fecha. La fecha se propone dentro del mes que se está mirando; si se
 elige una de otro mes, el gasto va a ese mes y la aplicación avisa de dónde ha
 ido. La **papelera** de cada fila lo quita.
 
-Por ahora los gastos solo se ven aquí: el PDF para la gestoría sigue llevando
-solo los cobros.
+Los gastos se consultan aquí y en el balance; el PDF que se exporta para la
+gestoría recoge los cobros.
 
 ### Balance
 
@@ -809,10 +792,10 @@ que hay en Drive.
 > de la carpeta de datos, normalmente `Documentos\Bitacora\copias`; la ruta
 > exacta aparece en **Administración**, debajo del título.
 
-**La carpeta de datos no debe ponerse dentro de Drive, Dropbox ni OneDrive.** La
-aplicación lo impide a propósito: SQLite mantiene archivos que tienen que viajar
-coordinados, y la sincronización continua los sube por separado. El resultado es
-corrupción. Los datos van en disco local; a la nube van las copias.
+**La carpeta de datos va siempre en disco local**, nunca dentro de Drive,
+Dropbox ni OneDrive, y la aplicación se encarga de que así sea. A la nube van las
+copias, que es para lo que la nube sirve aquí: salen ya cifradas y nadie las toca
+mientras se trabaja.
 
 Lo que producen ya va cifrado, así que una copia puede dejarse en un disco
 externo o en la nube sin que nadie más pueda leerla. Cada copia lleva dentro un
@@ -1168,8 +1151,8 @@ una nueva ahí.
 
 ### 11.9 Rectificar una factura
 
-**Una factura emitida no se edita**: la numeración es correlativa y sin huecos, y
-con VeriFactu además será irreversible. Un error se corrige en dos pasos:
+**Una factura emitida no se edita**: la numeración es correlativa y sin huecos,
+como pide la norma. Un error se corrige en dos pasos:
 
 1. **Arreglar el dato donde vive**: el domicilio o el NIF, en la ficha del
    paciente; la forma de pago, en la Agenda.
@@ -1234,10 +1217,9 @@ no viaja con los datos ni con las copias, así que el portátil puede ir en oscu
 y el de la mesa en claro.
 
 **Una sola Bitácora a la vez.** Si la abres cuando ya la tenías abierta, la
-ventana nueva te lo dice y se cierra sola. **No es un fallo.** Dos Bitácoras
-sobre los mismos datos se pisan sin que se note: una sesión guardada encima de
-otra más reciente, o el mismo recordatorio enviado dos veces. La ventana buena es
-la que ya tenías; búscala en la barra de tareas o en el Dock.
+ventana nueva te lo dice y se cierra sola: así los datos los lleva siempre una
+sola ventana. La buena es la que ya tenías; búscala en la barra de tareas o en el
+Dock.
 
 **Bloqueo por intentos.** Cinco contraseñas fallidas seguidas bloquean el acceso
 un rato. Es a propósito. Los códigos de verificación fallidos cuentan igual.

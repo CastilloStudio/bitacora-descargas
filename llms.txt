@@ -7,14 +7,7 @@
 
 Bitácora la publica CastilloStudio. Se instala desde un archivo descargado y, una
 vez instalada, se actualiza sola en los tres sistemas: no hace falta volver a la web
-a por cada versión.
-
-Mientras no haya certificado de firma de código, cada sistema protesta a su manera, y
-en ninguno de los casos es una advertencia de virus:
-
-- Windows: SmartScreen muestra «Windows protegió tu PC». Más información → Ejecutar de todas formas.
-- macOS: Gatekeeper bloquea el doble clic. La primera vez hay que abrirla con control + clic → Abrir.
-- Linux: no protesta nadie; solo hay que dar permiso de ejecución al AppImage.
+a por cada versión. En Linux se entrega como AppImage, que no instala nada.
 
 ## Páginas
 

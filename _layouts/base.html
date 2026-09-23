@@ -53,7 +53,7 @@
      asistente acabe repitiendo algo que no es verdad.
 
      El bloque "offers" declara el primer mes gratis y nada más: sin importe
-     ni periodicidad, porque todavía no se hacen públicos. Un "price: 0" aquí
+     ni periodicidad, que no se publican aquí. Un "price: 0" aquí
      sería falso en cuanto empiece a cobrarse, y es de lo que más tarda en
      desaprenderse un asistente. -->
 <script type="application/ld+json">
@@ -101,22 +101,6 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Por qué Windows muestra un aviso al instalar Bitácora?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mientras el ejecutable no está firmado, SmartScreen muestra «Windows protegió tu PC». Hay que pulsar Más información y después Ejecutar de todas formas. No es un aviso de virus: es lo normal en un programa sin certificado de firma de código."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Por qué macOS no deja abrir Bitácora?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mientras la aplicación no está firmada ni notarizada, Gatekeeper la bloquea al abrirla con doble clic. La primera vez hay que abrirla desde el menú contextual: control + clic sobre Bitácora en Aplicaciones y después Abrir, que ofrece un botón para abrirla de todos modos. A partir de ahí se abre con normalidad."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "¿En qué sistemas funciona Bitácora?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -154,9 +138,6 @@
     --verde-oscuro: #256B45;
     --enlace: #8A6520;
     --enlace-hover: #6B4E18;
-    --aviso-fondo: rgba(192, 138, 46, 0.09);
-    --aviso-borde: rgba(192, 138, 46, 0.42);
-    --aviso-tinta: #8A6520;
     --tenue: rgba(28, 27, 25, 0.62);
     --mas-tenue: rgba(28, 27, 25, 0.5);
   }
@@ -164,9 +145,9 @@
   * { box-sizing: border-box; }
 
   /* El navegador pinta el atributo hidden con display:none, pero lo hace desde su hoja
-     de estilos, que pierde contra cualquier display declarado aquí. .descarga es flex y
-     .aviso es grid, así que ocultarlos desde JavaScript ponía el atributo y no ocultaba
-     nada: se veían los tres sistemas a la vez. */
+     de estilos, que pierde contra cualquier display declarado aquí. .descarga es flex,
+     así que ocultarla desde JavaScript ponía el atributo y no ocultaba nada: se veían
+     los tres sistemas a la vez. */
   [hidden] { display: none !important; }
 
   html { -webkit-text-size-adjust: 100%; }
@@ -266,20 +247,43 @@
   /* --- Portada --- */
   .hero { padding: 84px 40px 44px; text-align: center; }
   .hero-caja { max-width: 760px; margin: 0 auto; }
+  /* El icono de la aplicación, con el mismo redondeo que trae dibujado dentro
+     (12 de 64 en el viewBox), para que la sombra siga el contorno y no un cuadrado. */
+  .hero-icono {
+    display: block;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 26px;
+    border-radius: 13px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 12px 26px -14px rgba(28, 27, 25, 0.34);
+  }
   .hero h1 { margin: 0; font-size: 46px; line-height: 1.12; text-wrap: balance; }
   .hero p { margin: 22px auto 0; max-width: 600px; font-size: 17px; color: rgba(28, 27, 25, 0.66); }
-  .hero-acciones { display: flex; flex-direction: column; align-items: center; gap: 22px; margin-top: 34px; }
-  .hero-meta { font-size: 13px; color: var(--mas-tenue); }
+  .hero-acciones { display: flex; flex-direction: column; align-items: center; gap: 24px; margin-top: 34px; }
 
   /* Descarga por sistema. Sin JavaScript se ven los tres, que es lo correcto: el
      que entra elige. Con JavaScript, el script de abajo deja a la vista el del
      sistema desde el que se visita y manda los otros dos a una línea suelta. */
-  .descarga { display: flex; flex-direction: column; align-items: center; gap: 13px; }
+  .descarga { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .descarga-nota { font-size: 13px; color: var(--mas-tenue); }
   .otras { font-size: 13px; color: var(--mas-tenue); }
   .otras a { color: var(--mas-tenue); text-decoration: underline; text-underline-offset: 2px; }
   .otras a:hover { color: var(--tinta); }
+
+  /* Lo que vale para los tres sistemas se dice una sola vez, debajo de los botones:
+     repetido en cada uno eran tres líneas iguales en el móvil, donde se ven los tres.
+     Es flex y no una línea de texto para que parta por los separadores en vez de
+     salirse por los lados: así cada trozo cae entero a la línea siguiente. */
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 22px 0 0;
+    font-size: 13px;
+    color: var(--mas-tenue);
+  }
   .hero-meta span { white-space: nowrap; }
-  .hero-meta .sep { margin: 0 10px; opacity: 0.5; }
+  .hero-meta span:not(:last-child)::after { content: "·"; margin: 0 10px; opacity: 0.5; }
   .hero-mas { margin-top: 18px; font-size: 14px; }
 
   .captura { padding: 0 40px 76px; }
@@ -320,32 +324,6 @@
     color: var(--verde);
     margin-bottom: 12px;
   }
-
-  .aviso-seccion { padding: 52px 40px 8px; }
-  .aviso {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 14px;
-    padding: 18px 20px;
-    border: 1px solid var(--aviso-borde);
-    border-radius: 8px;
-    background: var(--aviso-fondo);
-  }
-  /* Sin JavaScript se ven los tres avisos, uno por sistema, y necesitan aire entre
-     ellos; con JavaScript solo queda el del sistema que visita y esto no se aplica. */
-  .aviso + .aviso { margin-top: 12px; }
-  .aviso svg { color: var(--aviso-tinta); margin-top: 2px; }
-  .aviso code {
-    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
-    font-size: 0.88em;
-    background: rgba(136, 136, 136, 0.14);
-    padding: 1px 5px;
-    border-radius: 4px;
-  }
-  .aviso-titulo { font-weight: 600; font-size: 14px; color: var(--aviso-tinta); }
-  .aviso p { margin: 5px 0 0; font-size: 13.5px; color: rgba(28, 27, 25, 0.72); }
 
   .manual-cta { padding: 56px 40px 68px; }
   .manual-cta-caja {
@@ -523,11 +501,12 @@
   }
 
   @media (max-width: 720px) {
-    .franja, .cabecera, .pie, .hero, .captura, .rasgos, .aviso-seccion, .manual-cta {
+    .franja, .cabecera, .pie, .hero, .captura, .rasgos, .manual-cta {
       padding-left: 22px;
       padding-right: 22px;
     }
     .hero { padding-top: 56px; }
+    .hero-icono { width: 56px; height: 56px; margin-bottom: 20px; border-radius: 11px; }
     .hero h1 { font-size: 27px; }
     .hero h1 br { display: none; }
     .hero p { font-size: 15.5px; }
@@ -611,11 +590,6 @@
     var enlace = bloque.querySelector('a[href]');
     if (enlace && bloque.classList.contains('descarga'))
       otras.push({ nombre: bloque.getAttribute('data-nombre'), url: enlace.href });
-  });
-
-  // Los avisos de instalación viven fuera de la caja de descargas y se ocultan igual.
-  Array.prototype.forEach.call(document.querySelectorAll('[data-aviso]'), function (aviso) {
-    aviso.hidden = aviso.getAttribute('data-aviso') !== sistema;
   });
 
   var linea = caja.querySelector('[data-otras]');

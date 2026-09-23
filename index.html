@@ -13,6 +13,7 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
 
 <section class="hero">
   <div class="hero-caja">
+    <img class="hero-icono" src="{{ "/icono.svg" | relative_url }}" width="68" height="68" alt="Bitácora">
     <h1>Tu consulta de psicología, <br>en un solo sitio.</h1>
     <p>
       Agenda, historia clínica, informes y facturación en una aplicación de
@@ -29,9 +30,7 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
         </svg>
           <span>Descargar para Windows</span>
         </a>
-        <div class="hero-meta">
-          {% if site.version %}<span>Versión {{ site.version }}</span><span class="sep">·</span>{% endif %}<span>Windows 10 y 11</span><span class="sep">·</span><span>se actualiza sola</span>{% if page.oferta %}<span class="sep">·</span><span>{{ page.oferta | downcase }}</span>{% endif %}
-        </div>
+        <span class="descarga-nota">Windows 10 y 11</span>
       </div>
       <div class="descarga" data-sistema="macos" data-nombre="Mac">
         <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-osx-Setup.pkg">
@@ -42,9 +41,7 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
         </svg>
           <span>Descargar para Mac</span>
         </a>
-        <div class="hero-meta">
-          {% if site.version %}<span>Versión {{ site.version }}</span><span class="sep">·</span>{% endif %}<span>Mac con Apple Silicon</span><span class="sep">·</span><span>se actualiza sola</span>{% if page.oferta %}<span class="sep">·</span><span>{{ page.oferta | downcase }}</span>{% endif %}
-        </div>
+        <span class="descarga-nota">Mac con Apple Silicon</span>
       </div>
       <div class="descarga" data-sistema="linux" data-nombre="Linux">
         <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-linux-x86_64.AppImage">
@@ -55,13 +52,15 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
         </svg>
           <span>Descargar para Linux</span>
         </a>
-        <div class="hero-meta">
-          {% if site.version %}<span>Versión {{ site.version }}</span><span class="sep">·</span>{% endif %}<span>AppImage, 64 bits</span><span class="sep">·</span><span>se actualiza sola</span>{% if page.oferta %}<span class="sep">·</span><span>{{ page.oferta | downcase }}</span>{% endif %}
-        </div>
+        <span class="descarga-nota">AppImage, 64 bits</span>
       </div>
 
       <p class="otras" data-otras hidden></p>
     </div>
+
+    <p class="hero-meta">
+      {% if site.version %}<span>Versión {{ site.version }}</span>{% endif %}<span>se actualiza sola</span>{% if page.oferta %}<span>{{ page.oferta | downcase }}</span>{% endif %}
+    </p>
 
     <div class="hero-mas">
       <a href="https://github.com/CastilloStudio/bitacora-descargas/releases">Ver todas las versiones y sus notas &rarr;</a>
@@ -125,57 +124,6 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
       <p>Una vez instalada, cada versión nueva llega sola. No hace falta volver a esta página.</p>
     </div>
 
-  </div>
-</section>
-
-<section class="aviso-seccion">
-  <div class="aviso" data-aviso="windows">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M21.73 18l-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"></path>
-      <path d="M12 9v4"></path><path d="M12 17h.01"></path>
-    </svg>
-    <div>
-      <div class="aviso-titulo">Al instalar, Windows mostrará un aviso</div>
-      <p>
-        Mientras el ejecutable no está firmado, aparece «Windows protegió tu PC»
-        (SmartScreen). Pulsa <strong>Más información &rarr; Ejecutar de todas
-        formas</strong>. No es un aviso de virus: es lo normal en un programa sin
-        certificado de firma.
-      </p>
-    </div>
-  </div>
-
-  <div class="aviso" data-aviso="macos">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M21.73 18l-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"></path>
-      <path d="M12 9v4"></path><path d="M12 17h.01"></path>
-    </svg>
-    <div>
-      <div class="aviso-titulo">La primera vez, macOS no la dejará abrir con doble clic</div>
-      <p>
-        Mientras la aplicación no está firmada, Gatekeeper la bloquea. Ábrela una
-        primera vez desde el menú contextual: <strong>control + clic sobre Bitácora
-        en Aplicaciones &rarr; Abrir</strong>, y en el aviso que sale, Abrir otra vez.
-        Solo hace falta la primera vez; después se abre como cualquier otra. No es un
-        aviso de virus: es lo normal en un programa sin certificado de firma.
-      </p>
-    </div>
-  </div>
-
-  <div class="aviso" data-aviso="linux">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M21.73 18l-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"></path>
-      <path d="M12 9v4"></path><path d="M12 17h.01"></path>
-    </svg>
-    <div>
-      <div class="aviso-titulo">El AppImage hay que marcarlo como ejecutable</div>
-      <p>
-        Es un solo archivo y no se instala nada: descárgalo, dale permiso de ejecución
-        —<strong>clic derecho &rarr; Propiedades &rarr; Permitir ejecutar</strong>, o
-        <code>chmod +x</code> desde la terminal— y ábrelo. Linux no muestra ningún
-        aviso de procedencia.
-      </p>
-    </div>
   </div>
 </section>
 

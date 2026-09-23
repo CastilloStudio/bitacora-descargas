@@ -34,9 +34,3 @@ un repositorio público aparte, que es este.
 Ningún dato de pacientes, ninguna base de datos y ninguna copia de seguridad. Los datos
 de la consulta viven cifrados en el ordenador de la profesional y no salen de ahí; lo
 que se publica aquí es únicamente el programa y su manual.
-
-## Aviso al instalar
-
-Mientras el ejecutable no esté firmado, Windows mostrará un aviso de SmartScreen
-("Windows protegió tu PC"). Hay que pulsar **Más información → Ejecutar de todas
-formas**. Es esperable en cualquier programa sin certificado de firma de código.
