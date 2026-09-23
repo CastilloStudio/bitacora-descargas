@@ -1,19 +1,25 @@
 # Bitácora
 
 > Aplicación de escritorio para gestionar una consulta de psicología: agenda y
-> sesiones, historia clínica, informes y facturación. Para Windows 10 y 11. Los
-> datos se guardan cifrados en el equipo de la profesional y no salen de ahí.
+> sesiones, historia clínica, informes y facturación. Para Windows 10 y 11, Mac con
+> Apple Silicon y Linux. Los datos se guardan cifrados en el equipo de la
+> profesional y no salen de ahí.
 
-Bitácora la publica CastilloStudio. Se instala desde un ejecutable y, una vez
-instalada, se actualiza sola: no hace falta volver a la web a por cada versión.
-Mientras el ejecutable no esté firmado, Windows muestra el aviso de SmartScreen
-«Windows protegió tu PC»; no es una advertencia de virus, sino lo normal en un
-programa sin certificado de firma de código.
+Bitácora la publica CastilloStudio. Se instala desde un archivo descargado y, una
+vez instalada, se actualiza sola en los tres sistemas: no hace falta volver a la web
+a por cada versión.
+
+Mientras no haya certificado de firma de código, cada sistema protesta a su manera, y
+en ninguno de los casos es una advertencia de virus:
+
+- Windows: SmartScreen muestra «Windows protegió tu PC». Más información → Ejecutar de todas formas.
+- macOS: Gatekeeper bloquea el doble clic. La primera vez hay que abrirla con control + clic → Abrir.
+- Linux: no protesta nadie; solo hay que dar permiso de ejecución al AppImage.
 
 ## Páginas
 
-- [Portada y descarga](https://bitacora.castillostudio.es/): qué hace, captura de la agenda y el instalador para Windows.
-- [Manual de uso](https://bitacora.castillostudio.es/MANUAL.html): instalación, configuración y el día a día, en el orden en que se hacen las cosas.
+- [Portada y descarga](https://bitacora.castillostudio.es/): qué hace, captura de la agenda y las descargas para Windows, Mac y Linux.
+- [Manual de uso](https://bitacora.castillostudio.es/MANUAL.html): instalación, configuración y el día a día, en el orden en que se hacen las cosas. Lo que se configura una sola vez o solo se usa el día que pasa algo —verificación en dos pasos, conexión con Google, derechos del paciente, registro de accesos, recuperación— va aparte, en una última sección «Avanzado».
 - [Versiones y notas](https://github.com/CastilloStudio/bitacora-descargas/releases): cada versión con sus notas y su instalador.
 
 ## Qué hace

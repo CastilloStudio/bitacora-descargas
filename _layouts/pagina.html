@@ -1,7 +1,204 @@
 ---
 layout: base
 ---
-<main class="contenido">
-  <a class="volver" href="./">&larr; Volver a la descarga</a>
-  {{ content }}
-</main>
+{%- comment -%}
+  El manual. La columna de prosa es la de siempre; al lado va un índice que se
+  construye en el navegador a partir de los encabezados que kramdown ya numera
+  con su id. Se hace así, y no escrito a mano, porque el manual se copia tal cual
+  desde el repositorio del código: un índice escrito aquí se quedaría viejo en
+  cuanto alguien añadiera una sección allí, y nadie se enteraría hasta leerlo.
+
+  Sin JavaScript no se pierde nada: el índice no aparece y el manual se lee
+  entero, que es como se lee también en GitHub y en la release.
+{%- endcomment -%}
+<div class="manual-marco">
+
+  <aside class="indice" hidden>
+    <button class="indice-abrir" type="button" aria-expanded="false" aria-controls="indice-lista">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <span>Índice</span>
+    </button>
+    <nav id="indice-lista" class="indice-lista" aria-label="Índice del manual"></nav>
+  </aside>
+
+  <main class="contenido">
+    <a class="volver" href="./">&larr; Volver a la descarga</a>
+    {{ content }}
+  </main>
+
+</div>
+
+<script>
+(function () {
+  var prosa = document.querySelector('.contenido');
+  var panel = document.querySelector('.indice');
+  var caja  = document.getElementById('indice-lista');
+  if (!prosa || !panel || !caja) return;
+
+  var encabezados = prosa.querySelectorAll('h2[id], h3[id]');
+  if (encabezados.length < 2) return;
+
+  // --- Agrupar cada h3 bajo el h2 que lo precede -----------------------------
+  var secciones = [];
+  Array.prototype.forEach.call(encabezados, function (el) {
+    if (el.tagName === 'H2') secciones.push({ el: el, hijos: [] });
+    else if (secciones.length) secciones[secciones.length - 1].hijos.push(el);
+  });
+  if (!secciones.length) return;
+
+  // La última sección es «Avanzado», y se trata aparte: va separada del resto y
+  // abierta de entrada. Está al final para no estorbar, no para esconderla.
+  var ultima = secciones[secciones.length - 1];
+  var avanzada = /avanzado/i.test(ultima.el.textContent) ? ultima : null;
+
+  var chevron =
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+    ' stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M9 18l6-6-6-6"></path></svg>';
+
+  var lista = document.createElement('ul');
+  lista.className = 'indice-raiz';
+  var entradas = [];
+
+  secciones.forEach(function (seccion) {
+    var item = document.createElement('li');
+    item.className = 'indice-seccion';
+    if (seccion === avanzada) item.className += ' es-avanzado';
+
+    var fila = document.createElement('div');
+    fila.className = 'indice-fila';
+
+    var enlace = document.createElement('a');
+    enlace.className = 'indice-enlace';
+    enlace.href = '#' + seccion.el.id;
+    enlace.textContent = seccion.el.textContent;
+    fila.appendChild(enlace);
+
+    entradas.push({ enlace: enlace, item: item, id: seccion.el.id });
+
+    if (seccion.hijos.length) {
+      var boton = document.createElement('button');
+      boton.className = 'indice-chevron';
+      boton.type = 'button';
+      boton.innerHTML = chevron;
+      boton.setAttribute('aria-expanded', 'false');
+      boton.setAttribute('aria-label', 'Desplegar ' + seccion.el.textContent);
+      boton.addEventListener('click', function () {
+        var abierta = item.classList.toggle('abierta');
+        boton.setAttribute('aria-expanded', abierta ? 'true' : 'false');
+        // A partir de aquí manda quien lee: este apartado ya no se cierra solo.
+        item.dataset.manual = '1';
+      });
+      fila.appendChild(boton);
+    }
+
+    item.appendChild(fila);
+
+    if (seccion.hijos.length) {
+      var sub = document.createElement('ul');
+      sub.className = 'indice-hijos';
+      seccion.hijos.forEach(function (h) {
+        var li = document.createElement('li');
+        var sa = document.createElement('a');
+        sa.className = 'indice-sub';
+        sa.href = '#' + h.id;
+        sa.textContent = h.textContent;
+        li.appendChild(sa);
+        sub.appendChild(li);
+        entradas.push({ enlace: sa, item: item, id: h.id });
+      });
+      item.appendChild(sub);
+
+      if (seccion === avanzada) {
+        item.classList.add('abierta');
+        item.dataset.manual = '1';
+        fila.querySelector('.indice-chevron').setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    lista.appendChild(item);
+  });
+
+  caja.appendChild(lista);
+  panel.hidden = false;
+
+  // --- Qué sección se está leyendo -------------------------------------------
+  // Se despliega la del apartado en el que estás y se recoge la anterior, para
+  // que el índice no acabe abierto entero después de recorrer el manual. Lo que
+  // haya desplegado quien lee —y Avanzado— se queda como estaba: cerrarle a
+  // alguien lo que acaba de abrir es de las cosas que más molestan.
+  var alturas = [];
+  function medir() {
+    alturas = entradas.map(function (e) {
+      var el = document.getElementById(e.id);
+      return { entrada: e, y: el ? el.getBoundingClientRect().top + window.scrollY : 0 };
+    });
+  }
+
+  function desplegar(item, abrir) {
+    if (!item.querySelector('.indice-hijos')) return;
+    item.classList.toggle('abierta', abrir);
+    var b = item.querySelector('.indice-chevron');
+    if (b) b.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+  }
+
+  var actual = null;
+  var desplegada = null;
+  function marcar() {
+    if (!alturas.length) return;
+
+    var elegida;
+    // Al llegar al fondo de la página, el último apartado ya no puede pasar de
+    // la raya: si no se fuerza aquí, es el único que nunca llega a marcarse.
+    var fondo = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    if (fondo) {
+      elegida = alturas[alturas.length - 1].entrada;
+    } else {
+      var limite = window.scrollY + 120;
+      elegida = alturas[0].entrada;
+      for (var i = 0; i < alturas.length; i++) {
+        if (alturas[i].y <= limite) elegida = alturas[i].entrada; else break;
+      }
+    }
+    if (!elegida || elegida === actual) return;
+
+    if (actual) actual.enlace.classList.remove('activo');
+    elegida.enlace.classList.add('activo');
+    actual = elegida;
+
+    if (desplegada === elegida.item) return;
+    if (desplegada && !desplegada.dataset.manual) desplegar(desplegada, false);
+    desplegar(elegida.item, true);
+    desplegada = elegida.item;
+  }
+
+  var pendiente = false;
+  function alDesplazar() {
+    if (pendiente) return;
+    pendiente = true;
+    window.requestAnimationFrame(function () { pendiente = false; marcar(); });
+  }
+
+  medir();
+  marcar();
+  window.addEventListener('scroll', alDesplazar, { passive: true });
+  window.addEventListener('resize', function () { medir(); marcar(); });
+  window.addEventListener('load', function () { medir(); marcar(); });
+
+  // --- En móvil el índice va plegado encima del texto ------------------------
+  var abrir = panel.querySelector('.indice-abrir');
+  abrir.addEventListener('click', function () {
+    var abierto = panel.classList.toggle('desplegado');
+    abrir.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  });
+
+  caja.addEventListener('click', function (ev) {
+    if (ev.target.closest('a') && panel.classList.contains('desplegado')) {
+      panel.classList.remove('desplegado');
+      abrir.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>

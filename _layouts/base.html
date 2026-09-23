@@ -65,7 +65,7 @@
   "description": "Aplicación de escritorio para gestionar una consulta de psicología: agenda y sesiones, historia clínica, informes y facturación. Los datos se guardan cifrados en el equipo de la profesional, sin nube.",
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "Gestión de consulta de psicología",
-  "operatingSystem": "Windows 10, Windows 11",{% if site.version %}
+  "operatingSystem": "Windows 10, Windows 11, macOS, Linux",{% if site.version %}
   "softwareVersion": {{ site.version | jsonify }},{% endif %}
   "inLanguage": "es-ES",{% if page.oferta %}
   "offers": {
@@ -74,7 +74,7 @@
     "description": "El primer mes de uso es gratuito.",
     "availability": "https://schema.org/InStock"
   },{% endif %}
-  "downloadUrl": "https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe",
+  "downloadUrl": "https://github.com/CastilloStudio/bitacora-descargas/releases/latest",
   "releaseNotes": "https://github.com/CastilloStudio/bitacora-descargas/releases",
   "softwareHelp": {{ "/MANUAL.html" | absolute_url | jsonify }},
   "screenshot": {{ "/imagenes/agenda.png" | absolute_url | jsonify }},
@@ -105,6 +105,22 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Mientras el ejecutable no está firmado, SmartScreen muestra «Windows protegió tu PC». Hay que pulsar Más información y después Ejecutar de todas formas. No es un aviso de virus: es lo normal en un programa sin certificado de firma de código."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué macOS no deja abrir Bitácora?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mientras la aplicación no está firmada ni notarizada, Gatekeeper la bloquea al abrirla con doble clic. La primera vez hay que abrirla desde el menú contextual: control + clic sobre Bitácora en Aplicaciones y después Abrir, que ofrece un botón para abrirla de todos modos. A partir de ahí se abre con normalidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿En qué sistemas funciona Bitácora?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En Windows 10 y 11, en Mac con Apple Silicon (M1 o posterior) y en Linux mediante un AppImage. En los tres se actualiza sola una vez instalada."
       }
     },
     {
@@ -146,6 +162,12 @@
   }
 
   * { box-sizing: border-box; }
+
+  /* El navegador pinta el atributo hidden con display:none, pero lo hace desde su hoja
+     de estilos, que pierde contra cualquier display declarado aquí. .descarga es flex y
+     .aviso es grid, así que ocultarlos desde JavaScript ponía el atributo y no ocultaba
+     nada: se veían los tres sistemas a la vez. */
+  [hidden] { display: none !important; }
 
   html { -webkit-text-size-adjust: 100%; }
 
@@ -246,8 +268,16 @@
   .hero-caja { max-width: 760px; margin: 0 auto; }
   .hero h1 { margin: 0; font-size: 46px; line-height: 1.12; text-wrap: balance; }
   .hero p { margin: 22px auto 0; max-width: 600px; font-size: 17px; color: rgba(28, 27, 25, 0.66); }
-  .hero-acciones { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 34px; }
+  .hero-acciones { display: flex; flex-direction: column; align-items: center; gap: 22px; margin-top: 34px; }
   .hero-meta { font-size: 13px; color: var(--mas-tenue); }
+
+  /* Descarga por sistema. Sin JavaScript se ven los tres, que es lo correcto: el
+     que entra elige. Con JavaScript, el script de abajo deja a la vista el del
+     sistema desde el que se visita y manda los otros dos a una línea suelta. */
+  .descarga { display: flex; flex-direction: column; align-items: center; gap: 13px; }
+  .otras { font-size: 13px; color: var(--mas-tenue); }
+  .otras a { color: var(--mas-tenue); text-decoration: underline; text-underline-offset: 2px; }
+  .otras a:hover { color: var(--tinta); }
   .hero-meta span { white-space: nowrap; }
   .hero-meta .sep { margin: 0 10px; opacity: 0.5; }
   .hero-mas { margin-top: 18px; font-size: 14px; }
@@ -303,7 +333,17 @@
     border-radius: 8px;
     background: var(--aviso-fondo);
   }
+  /* Sin JavaScript se ven los tres avisos, uno por sistema, y necesitan aire entre
+     ellos; con JavaScript solo queda el del sistema que visita y esto no se aplica. */
+  .aviso + .aviso { margin-top: 12px; }
   .aviso svg { color: var(--aviso-tinta); margin-top: 2px; }
+  .aviso code {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+    font-size: 0.88em;
+    background: rgba(136, 136, 136, 0.14);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
   .aviso-titulo { font-weight: 600; font-size: 14px; color: var(--aviso-tinta); }
   .aviso p { margin: 5px 0 0; font-size: 13.5px; color: rgba(28, 27, 25, 0.72); }
 
@@ -324,12 +364,87 @@
   .manual-cta h3 { margin: 8px 0 0; font-size: 20px; }
   .manual-cta p { margin: 8px 0 0; font-size: 13.5px; color: var(--tenue); max-width: 460px; }
 
+  /* --- Manual: índice lateral --- */
+  /* Dos columnas mientras quepan las dos. Por debajo de 1000px el índice se
+     pliega encima del texto, porque una columna de 236px a costa de la prosa
+     deja el manual en un canalón. */
+  .manual-marco {
+    display: grid;
+    grid-template-columns: 236px minmax(0, 1fr);
+    gap: 0 52px;
+    align-items: start;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .indice {
+    position: sticky;
+    top: 20px;
+    padding: 58px 0 40px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  .indice-abrir { display: none; }
+  .indice ul { list-style: none; margin: 0; padding: 0; }
+  .indice-fila { display: flex; align-items: center; gap: 2px; }
+  .indice-enlace,
+  .indice-sub {
+    display: block;
+    flex: 1;
+    padding: 5px 0;
+    color: var(--tenue);
+    border-left: 2px solid transparent;
+    transition: color 110ms ease, border-color 110ms ease;
+  }
+  .indice-enlace { padding-left: 10px; }
+  .indice-sub { padding-left: 22px; font-size: 13px; color: var(--mas-tenue); }
+  .indice-enlace:hover,
+  .indice-sub:hover { color: var(--tinta); text-decoration: none; }
+  .indice-enlace.activo,
+  .indice-sub.activo {
+    color: var(--verde);
+    border-left-color: var(--verde);
+    font-weight: 500;
+  }
+  .indice-chevron {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--mas-tenue);
+    cursor: pointer;
+    transition: transform 140ms ease, color 110ms ease;
+  }
+  .indice-chevron:hover { color: var(--tinta); background: var(--linea-suave); }
+  .indice-seccion.abierta > .indice-fila > .indice-chevron { transform: rotate(90deg); }
+  .indice-hijos { display: none; margin: 0 0 4px; }
+  .indice-seccion.abierta > .indice-hijos { display: block; }
+
+  /* Avanzado va separado y abierto de entrada: está al final del manual para no
+     estorbar en el día a día, no para quedar escondido. */
+  .indice-seccion.es-avanzado {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--linea);
+  }
+  .indice-seccion.es-avanzado > .indice-fila > .indice-enlace { color: var(--tinta); }
+
   /* --- Manual (prosa) --- */
   .contenido {
+    min-width: 0;
     max-width: 760px;
-    margin: 0 auto;
-    padding: 56px 40px 72px;
+    padding: 56px 0 72px;
   }
+  .contenido h2, .contenido h3 { scroll-margin-top: 20px; }
   .contenido h1 { font-size: 34px; line-height: 1.15; margin: 0 0 8px; }
   .contenido h2 { font-size: 23px; margin: 44px 0 12px; padding-top: 4px; }
   .contenido h3 { font-size: 18px; font-weight: 500; margin: 30px 0 8px; }
@@ -377,6 +492,36 @@
   .contenido img { border: 1px solid var(--linea); border-radius: 8px; }
   .volver { display: inline-block; margin-bottom: 24px; font-size: 14px; }
 
+  /* El índice deja de caber al lado: pasa a un desplegable encima del texto. */
+  @media (max-width: 1000px) {
+    .manual-marco { display: block; max-width: 820px; }
+    .indice {
+      position: static;
+      max-height: none;
+      overflow: visible;
+      padding: 40px 0 0;
+      border-bottom: 1px solid var(--linea-suave);
+    }
+    .indice-abrir {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 9px 15px;
+      border: 1px solid var(--linea);
+      border-radius: 6px;
+      background: var(--superficie);
+      color: var(--tinta);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .indice-lista { display: none; padding-bottom: 20px; }
+    .indice.desplegado .indice-lista { display: block; }
+    .contenido { padding-top: 34px; }
+    .volver { margin-bottom: 20px; }
+  }
+
   @media (max-width: 720px) {
     .franja, .cabecera, .pie, .hero, .captura, .rasgos, .aviso-seccion, .manual-cta {
       padding-left: 22px;
@@ -389,7 +534,8 @@
     .rasgos-rejilla { grid-template-columns: 1fr 1fr; gap: 26px 20px; }
     .manual-cta-caja { flex-direction: column; align-items: flex-start; gap: 20px; }
     .nav { gap: 16px; font-size: 13px; }
-    .contenido { padding: 40px 22px 56px; }
+    .manual-marco { padding: 0 22px; }
+    .contenido { padding: 28px 0 56px; }
   }
 
   @media (max-width: 460px) {
@@ -429,6 +575,59 @@
     </div>
   </div>
 </footer>
+
+<!--
+  Deja a la vista la descarga del sistema desde el que se visita. Es una comodidad,
+  no un filtro: el HTML trae los tres y, si esto no se ejecuta, se quedan los tres a
+  la vista, que es un peor sitio donde estar pero no uno roto.
+
+  Desde un móvil no se oculta nada: no se puede instalar en él de ninguna manera, y
+  quien mira desde el teléfono suele estar buscando qué mandarse al ordenador.
+-->
+<script>
+(function () {
+  var caja = document.querySelector('[data-descargas]');
+  if (!caja) return;
+
+  var ua = navigator.userAgent || '';
+
+  // El orden importa: un Android dice «Linux» y un iPad dice «Macintosh».
+  var sistema =
+    /Android|iPhone|iPad|iPod/i.test(ua) ? null :
+    /Mac/i.test(ua) ? 'macos' :
+    /Linux|X11|CrOS/i.test(ua) ? 'linux' :
+    /Win/i.test(ua) ? 'windows' : null;
+
+  if (!sistema) return;
+
+  var bloques = caja.querySelectorAll('[data-sistema]');
+  var otras = [];
+
+  Array.prototype.forEach.call(bloques, function (bloque) {
+    if (bloque.getAttribute('data-sistema') === sistema) return;
+
+    bloque.hidden = true;
+
+    var enlace = bloque.querySelector('a[href]');
+    if (enlace && bloque.classList.contains('descarga'))
+      otras.push({ nombre: bloque.getAttribute('data-nombre'), url: enlace.href });
+  });
+
+  // Los avisos de instalación viven fuera de la caja de descargas y se ocultan igual.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-aviso]'), function (aviso) {
+    aviso.hidden = aviso.getAttribute('data-aviso') !== sistema;
+  });
+
+  var linea = caja.querySelector('[data-otras]');
+  if (!linea || otras.length === 0) return;
+
+  linea.innerHTML = 'También para ' + otras.map(function (o) {
+    return '<a href="' + o.url + '">' + o.nombre + '</a>';
+  }).join(' y ') + '.';
+
+  linea.hidden = false;
+})();
+</script>
 
 </body>
 </html>
