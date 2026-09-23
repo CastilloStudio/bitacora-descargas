@@ -20,6 +20,13 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
       escritorio. Los datos viven cifrados en tu equipo y no salen de ahí.
     </p>
 
+    {% comment %}
+      El instalador de Windows sale de cada versión, así que su enlace va a «latest».
+      Mac y Linux se empaquetan cada varias versiones: los suyos van a version_otros,
+      la última release que los lleva, que el flujo de publicación calcula y escribe en
+      _config.yml. Sin ese dato se cae a «latest». La versión solo se dice debajo del
+      botón cuando no es la misma que la de Windows.
+    {% endcomment %}
     <div class="hero-acciones" data-descargas>
       <div class="descarga" data-sistema="windows" data-nombre="Windows">
         <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-win-Setup.exe">
@@ -33,7 +40,7 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
         <span class="descarga-nota">Windows 10 y 11</span>
       </div>
       <div class="descarga" data-sistema="macos" data-nombre="Mac">
-        <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-osx-Setup.pkg">
+        <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/{% if site.version_otros %}download/v{{ site.version_otros }}{% else %}latest/download{% endif %}/Bitacora-osx-Setup.pkg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <path d="M7 10l5 5 5-5"></path>
@@ -41,10 +48,10 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
         </svg>
           <span>Descargar para Mac</span>
         </a>
-        <span class="descarga-nota">Mac con Apple Silicon</span>
+        <span class="descarga-nota">Mac con Apple Silicon{% if site.version_otros and site.version_otros != site.version %} · versión {{ site.version_otros }}{% endif %}</span>
       </div>
       <div class="descarga" data-sistema="linux" data-nombre="Linux">
-        <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-linux-x86_64.AppImage">
+        <a class="boton-descarga" href="https://github.com/CastilloStudio/bitacora-descargas/releases/{% if site.version_otros %}download/v{{ site.version_otros }}{% else %}latest/download{% endif %}/Bitacora-linux-x86_64.AppImage">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <path d="M7 10l5 5 5-5"></path>
@@ -52,7 +59,7 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
         </svg>
           <span>Descargar para Linux</span>
         </a>
-        <span class="descarga-nota">AppImage, 64 bits</span>
+        <span class="descarga-nota">AppImage, 64 bits{% if site.version_otros and site.version_otros != site.version %} · versión {{ site.version_otros }}{% endif %}</span>
       </div>
 
       <p class="otras" data-otras hidden></p>
@@ -124,6 +131,27 @@ description: Agenda, historia clínica, informes y facturación para tu consulta
       <p>Una vez instalada, cada versión nueva llega sola. No hace falta volver a esta página.</p>
     </div>
 
+  </div>
+</section>
+
+<!-- Las preguntas salen de _data/faq.yml, que es la única fuente: de ahí sale
+     también el FAQPage de datos estructurados de _layouts/base.html. Escribirlas
+     dos veces las desincronizaba, y la que se desincronizaba era la invisible. -->
+<section class="preguntas">
+  <div class="preguntas-caja">
+    <h2>Preguntas frecuentes</h2>
+    {%- assign grupo_actual = "" -%}
+    {%- for item in site.data.faq %}
+    {%- if item.grupo != grupo_actual %}
+
+    <div class="rotulo preguntas-grupo">{{ item.grupo }}</div>
+    {%- assign grupo_actual = item.grupo -%}
+    {%- endif %}
+    <details class="pregunta">
+      <summary>{{ item.pregunta }}</summary>
+      <p>{{ item.respuesta }}</p>
+    </details>
+    {%- endfor %}
   </div>
 </section>
 

@@ -1,3 +1,17 @@
+---
+layout: none
+---
+{%- comment %}
+El front matter de arriba no es decorativo: sin él Jekyll copia este archivo tal cual y
+las etiquetas de abajo saldrían escritas literalmente. Y tiene que llevar
+«layout: none» porque el `defaults` de _config.yml le pondría si no el layout de las
+páginas, y este archivo se publicaría envuelto en el HTML entero de la web. Jekyll quita
+estas líneas al generar, así que lo publicado empieza en «# Bitácora».
+
+Las preguntas se leen de _data/faq.yml, que es de donde salen también la sección de la
+portada y el FAQPage de datos estructurados. Este archivo es lo que leen los asistentes
+al resumir el producto: una respuesta distinta aquí sería la versión que se cita.
+{% endcomment -%}
 # Bitácora
 
 > Aplicación de escritorio para gestionar una consulta de psicología: agenda y
@@ -21,3 +35,8 @@ a por cada versión. En Linux se entrega como AppImage, que no instala nada.
 - Historia clínica: fichas, evolución, material de trabajo e informes.
 - Facturación por sesión o por mes, envío al paciente por correo y resumen mensual.
 - Todo cifrado en el disco del equipo, sin nube.
+
+## Preguntas frecuentes
+{% for item in site.data.faq %}
+- **{{ item.pregunta }}** {{ item.respuesta }}
+{%- endfor %}

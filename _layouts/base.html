@@ -94,38 +94,29 @@
   }
 }
 </script>
+{% if site.data.faq %}
+<!-- Las mismas preguntas que la portada pinta en su sección «Preguntas frecuentes»,
+     leídas del mismo _data/faq.yml. Este bloque es lo que un buscador puede desplegar
+     debajo del resultado: lo que se escriba aquí puede ser la primera frase que
+     alguien lea de Bitácora, así que la lista se cuida desde el archivo de datos y
+     nunca se retoca solo aquí. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
+  "mainEntity": [{% for item in site.data.faq %}
     {
       "@type": "Question",
-      "name": "¿En qué sistemas funciona Bitácora?",
+      "name": {{ item.pregunta | jsonify }},
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "En Windows 10 y 11, en Mac con Apple Silicon (M1 o posterior) y en Linux mediante un AppImage. En los tres se actualiza sola una vez instalada."
+        "text": {{ item.respuesta | jsonify }}
       }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Dónde se guardan los datos de los pacientes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Los datos viven cifrados en el equipo de la profesional y no salen de ahí. Bitácora no usa nube para la historia clínica."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Hay que volver a descargar Bitácora para actualizarla?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Una vez instalada, cada versión nueva llega sola y la aplicación avisa para aplicarla cuando convenga."
-      }
-    }
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
   ]
 }
 </script>
+{% endif %}
 {% endif %}
 <style>
   :root {
@@ -325,6 +316,46 @@
     margin-bottom: 12px;
   }
 
+  /* --- Preguntas frecuentes --- */
+  /* Van plegadas: trece respuestas abiertas de golpe empujan el manual fuera de la
+     pantalla y convierten la portada en un documento. <details> las abre sin una
+     línea de JavaScript, y un buscador las lee estén abiertas o cerradas. */
+  .preguntas { padding: 64px 40px 4px; }
+  .preguntas-caja { max-width: 760px; margin: 0 auto; }
+  .preguntas h2 { margin: 0; font-size: 26px; }
+  .preguntas-grupo { margin: 34px 0 4px; }
+  .pregunta { border-bottom: 1px solid var(--linea-suave); }
+  .pregunta summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 0;
+    font-size: 15px;
+    cursor: pointer;
+    list-style: none;
+    transition: color 110ms ease;
+  }
+  /* Safari pinta su propio triángulo y no atiende a list-style. */
+  .pregunta summary::-webkit-details-marker { display: none; }
+  .pregunta summary:hover { color: var(--verde); }
+  .pregunta summary:focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; border-radius: 3px; }
+  /* El chevron es un cuadrado al que le faltan dos lados, girado: apunta abajo
+     cerrado y arriba abierto, sin SVG ni fuente de iconos. */
+  .pregunta summary::after {
+    content: "";
+    flex: none;
+    width: 7px;
+    height: 7px;
+    margin-top: 6px;
+    border-right: 1.5px solid var(--mas-tenue);
+    border-bottom: 1.5px solid var(--mas-tenue);
+    transform: rotate(45deg);
+    transition: transform 140ms ease;
+  }
+  .pregunta[open] summary::after { margin-top: 9px; transform: rotate(-135deg); }
+  .pregunta p { margin: 0 0 18px; padding-right: 27px; font-size: 14px; color: var(--tenue); }
+
   .manual-cta { padding: 56px 40px 68px; }
   .manual-cta-caja {
     max-width: 900px;
@@ -501,7 +532,7 @@
   }
 
   @media (max-width: 720px) {
-    .franja, .cabecera, .pie, .hero, .captura, .rasgos, .manual-cta {
+    .franja, .cabecera, .pie, .hero, .captura, .rasgos, .preguntas, .manual-cta {
       padding-left: 22px;
       padding-right: 22px;
     }

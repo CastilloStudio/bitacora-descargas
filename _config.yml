@@ -1,7 +1,9 @@
 # Configuración de GitHub Pages del repositorio público de descargas
 # (CastilloStudio/bitacora-descargas). Todo lo que hay en sitio-descargas/ se
 # copia allí desde el flujo de release; no se edita en el repo público a mano.
-# El flujo añade además una línea "version: X.Y.Z" al final.
+# El flujo añade al final "version: X.Y.Z" —la que se acaba de publicar, que es la de
+# Windows— y "version_otros: X.Y.Z", la última empaquetada también para Mac y Linux,
+# de donde salen los enlaces de esos dos botones de la portada.
 title: Bitácora
 description: Gestión de consulta de psicología — descarga y manual de uso
 
@@ -18,6 +20,20 @@ defaults:
       path: ""
     values:
       layout: pagina
+
+  # El fichero de verificación de Search Console fuera del sitemap. jekyll-sitemap
+  # recorre también los ficheros estáticos y se lleva cualquier .html, así que sin
+  # esto le estaríamos pidiendo a Google que indexe el token: una página sin
+  # contenido que solo ensucia el informe de cobertura.
+  #
+  # Tiene que ir aquí y no en el propio fichero: una cabecera YAML lo convertiría
+  # en página, pasaría por _layouts/ y Google dejaría de encontrar la línea exacta
+  # que compara. Por eso vale un default —Jekyll los aplica también a los estáticos,
+  # vía StaticFile#data— y no vale una cabecera.
+  - scope:
+      path: google37cf596a386f6881.html
+    values:
+      sitemap: false
 
 # Todos incluidos en el gem github-pages:
 #  - optional-front-matter: procesa MANUAL.md aunque no lleve cabecera Jekyll

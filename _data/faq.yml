@@ -1,0 +1,116 @@
+# Las preguntas frecuentes de la portada.
+#
+# Este archivo es la única fuente: de aquí salen a la vez la sección visible de
+# index.html y el bloque FAQPage de datos estructurados de _layouts/base.html, que es
+# lo que Google puede desplegar debajo del resultado de búsqueda. Escritas en dos
+# sitios se desincronizaban a la primera, y la copia desincronizada sería justo la que
+# no se ve al revisar la página.
+#
+# Qué entra: lo que alguien necesita saber para decidirse, contado en positivo. Qué
+# no: lo que dice `docs/mensaje-publico.md` en el repositorio privado —ni «todavía
+# no», ni desmentidos, ni el mecanismo de ninguna avería—. Un FAQ es el formato que
+# más tienta a saltarse esa norma, porque el formato mismo invita a preguntar por lo
+# que falla.
+#
+# Cada respuesta va en texto llano y en un solo párrafo: el mismo texto se sirve como
+# HTML y como JSON, así que ni etiquetas ni enlaces. El orden de la lista es el orden
+# en que se pintan, y `grupo` abre un rótulo nuevo cada vez que cambia.
+
+- grupo: Tus datos
+  pregunta: ¿Dónde se guardan los datos de mis pacientes?
+  respuesta: >-
+    En tu ordenador, cifrados, y no salen de ahí. Bitácora no tiene servidor ni cuenta
+    de empresa donde estén además: la historia clínica vive en tu disco, y lo único
+    que sale son las copias de seguridad —que salen ya cifradas— y lo que tú decidas
+    mandar, como un aviso de cita o una factura.
+
+- grupo: Tus datos
+  pregunta: ¿Quién puede leer las historias clínicas?
+  respuesta: >-
+    Solo tú. La base de datos va cifrada con tu contraseña, y esa contraseña no se
+    guarda en ninguna parte: sin ella el archivo no dice nada a nadie, tampoco a
+    nosotros. Es lo que hace que el cifrado signifique algo, y por eso Bitácora
+    imprime una clave de recuperación el día que se crea la consulta.
+
+- grupo: Tus datos
+  pregunta: ¿Qué ve Google de mis pacientes?
+  respuesta: >-
+    En el calendario aparece una etiqueta del tipo «Sesión · AR-3f9c1b»: un
+    seudónimo, nunca el nombre del paciente ni el motivo de consulta. Conectar Google
+    es opcional, y sirve para tener la agenda en el móvil, enviar los avisos de cita y
+    guardar las copias de seguridad en tu Drive.
+
+- grupo: Tus datos
+  pregunta: ¿En qué me ayuda con la protección de datos?
+  respuesta: >-
+    La responsable del tratamiento eres tú, y Bitácora te da con qué demostrarlo: los
+    datos cifrados en tu equipo, un registro de cada vez que se abre una historia
+    clínica, el expediente completo de un paciente en un PDF para atender su derecho
+    de acceso, y una supresión que cuenta sola los cinco años de conservación que
+    exige la Ley 41/2002.
+
+- grupo: Si algo va mal
+  pregunta: Si olvido la contraseña, ¿pierdo las historias clínicas?
+  respuesta: >-
+    No. Al crear la consulta, Bitácora genera una clave de recuperación para imprimir
+    y guardar fuera del ordenador. Con ella se entra desde la pantalla de acceso y se
+    pone una contraseña nueva.
+
+- grupo: Si algo va mal
+  pregunta: ¿Y si se rompe el ordenador?
+  respuesta: >-
+    Bitácora hace una copia cifrada al día y, con Google conectado, la sube sola a tu
+    Drive. En el ordenador nuevo se arranca desde esa copia con tu contraseña y vuelve
+    todo: pacientes, historias clínicas, documentos, facturas y la propia conexión con
+    Google.
+
+- grupo: Si algo va mal
+  pregunta: ¿Puedo llevarme mis datos?
+  respuesta: >-
+    Son tuyos y están en tu disco. Cada copia de seguridad lleva dentro un archivo con
+    las instrucciones para abrirla sin Bitácora, el expediente de cualquier paciente
+    sale en PDF y las facturas se exportan cuando quieras.
+
+- grupo: El día a día
+  pregunta: ¿Necesito internet para trabajar?
+  respuesta: >-
+    No. La agenda, la historia clínica, los informes y las facturas funcionan con el
+    ordenador y nada más. Internet hace falta para lo que sale fuera —avisar a un
+    paciente, enviarle su factura, subir la copia a Drive—, y lo que se agende
+    mientras tanto se pone al día en cuanto vuelve la conexión.
+
+- grupo: El día a día
+  pregunta: ¿Sirve para terapia de pareja?
+  respuesta: >-
+    Sí. Un caso puede ser de dos personas, con el consentimiento de cada una
+    registrado y una historia clínica que es de los dos. Las tarifas distinguen la
+    sesión individual de la de pareja, y la facturación sabe a cuál de los dos se le
+    factura.
+
+- grupo: El día a día
+  pregunta: ¿Qué dice la factura que recibe el paciente?
+  respuesta: >-
+    El concepto es siempre «Prestación de servicios»: no dice la modalidad ni la fecha
+    de la sesión, porque esa factura puede acabar en manos de una mutua o de una
+    gestoría. Sale exenta de IVA por el artículo 20.Uno.3º de la Ley del IVA, con
+    numeración correlativa, y se envía por correo o se exporta en PDF.
+
+- grupo: El día a día
+  pregunta: ¿Puedo pasar cuestionarios?
+  respuesta: >-
+    Sí. Se cumplimentan dentro de la ficha del caso y Bitácora los corrige: suma las
+    respuestas, invierte los ítems que toque y clasifica por tramos. La lectura
+    clínica es tuya; la aplicación cuenta y clasifica, no interpreta ni diagnostica.
+
+- grupo: Instalar y actualizar
+  pregunta: ¿En qué sistemas funciona Bitácora?
+  respuesta: >-
+    En Windows 10 y 11, en Mac con Apple Silicon (M1 o posterior) y en Linux mediante
+    un AppImage. Es la misma aplicación en los tres: las mismas pantallas, los mismos
+    datos y el mismo manual.
+
+- grupo: Instalar y actualizar
+  pregunta: ¿Hay que volver a descargar Bitácora para actualizarla?
+  respuesta: >-
+    No. Una vez instalada, cada versión nueva llega sola y la aplicación avisa para
+    aplicarla cuando convenga.
