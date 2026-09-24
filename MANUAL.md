@@ -75,7 +75,7 @@ la nube van las copias.
 Hace falta un Mac con **Apple Silicon** (M1 o posterior).
 
 1. Descargar el instalador:
-   <https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-osx-Setup.pkg>
+   <https://github.com/CastilloStudio/bitacora-descargas/releases/download/v0.1.15/Bitacora-osx-Setup.pkg>
 2. Abrirlo y seguir los pasos. Bitácora queda en **Aplicaciones**.
 
 Los datos van a `Documentos/Bitacora`. Si tuvieras Escritorio y Documentos
@@ -84,7 +84,7 @@ sincronizados con iCloud, van a una carpeta local del equipo.
 ### En Linux
 
 1. Descargar el archivo:
-   <https://github.com/CastilloStudio/bitacora-descargas/releases/latest/download/Bitacora-linux-x86_64.AppImage>
+   <https://github.com/CastilloStudio/bitacora-descargas/releases/download/v0.1.15/Bitacora-linux-x86_64.AppImage>
 2. Darle permiso de ejecución: clic derecho → **Propiedades** → **Permisos** →
    permitir ejecutar como programa. En terminal,
    `chmod +x Bitacora-linux-x86_64.AppImage`.
