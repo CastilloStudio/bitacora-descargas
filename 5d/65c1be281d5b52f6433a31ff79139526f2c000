@@ -1,0 +1,21 @@
+MANUAL.md
+  s_b89db168aa83c4::t_ee78ebe78e5d68 78,87
+index.html
+  s_b89db168aa83c4::t_4de11634a6c7e3 24-25,40,48,51,59,70,161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5d65c1be281d5b52f6433a31ff79139526f2c000",
+  "prompts": {},
+  "sessions": {
+    "s_b89db168aa83c4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "66c9c0a4-75be-49c3-bc48-99a79ac9b2d1",
+        "model": "unknown"
+      },
+      "human_author": "Emilio <emiliocastillogonzalez@gmail.com>"
+    }
+  }
+}
