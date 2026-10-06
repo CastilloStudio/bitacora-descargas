@@ -1,9 +1,7 @@
 # Configuración de GitHub Pages del repositorio público de descargas
 # (CastilloStudio/bitacora-descargas). Todo lo que hay en sitio-descargas/ se
 # copia allí desde el flujo de release; no se edita en el repo público a mano.
-# El flujo añade al final "version: X.Y.Z" —la que se acaba de publicar, que es la de
-# Windows— y "version_otros: X.Y.Z", la última empaquetada también para Mac y Linux,
-# de donde salen los enlaces de esos dos botones de la portada.
+# El flujo añade al final "version: X.Y.Z", la que se acaba de publicar.
 title: Bitácora
 description: Gestión de consulta de psicología — descarga y manual de uso
 
@@ -49,4 +47,4 @@ plugins:
 exclude:
   - README.md
 
-version: 0.1.16
+version: 0.1.17

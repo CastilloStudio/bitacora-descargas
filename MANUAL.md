@@ -688,10 +688,13 @@ varias pendientes, hay que emitir una factura por cada una.
 La factura sale **exenta de IVA** por el artículo 20.Uno.3º de la Ley del IVA,
 que es lo que corresponde a la asistencia sanitaria.
 
-**El concepto es siempre «Prestación de servicios», y no hay ningún otro.** No
-dice la modalidad, ni la fecha de la sesión, ni si llegó a darse: esa factura
+**El concepto sale como «Prestación de servicios», y se puede cambiar** en el
+campo **Concepto** antes de emitir. Conviene dejarlo así de genérico: que no diga
+la modalidad, ni la fecha de la sesión, ni nada de lo que se trató. Esa factura
 puede acabar en manos de terceros —una mutua, una gestoría, quien la encuentre en
-un cajón— y todo eso, cruzado con un nombre y un NIF, es un dato de salud.
+un cajón— y todo eso, cruzado con un nombre y un NIF, es un dato de salud. Una
+vez emitida, el concepto ya no se cambia; si hace falta, la rectificativa sale
+con el mismo.
 
 **Sin domicilio del paciente y sin forma de pago, la factura no sale.** Son
 contenido obligatorio del impreso, y una factura emitida ya no se retoca. Si
@@ -765,9 +768,25 @@ gestoría recoge los cobros.
 
 ### Balance
 
-Arriba, lo cobrado, lo gastado y el balance del mes. Debajo, el **año mes a mes**
-con las mismas tres cifras y el total, con el mes elegido en negrita. Un balance
-negativo sale en rojo.
+![Cuentas, pestaña de balance, con las cifras del mes y el año en barras comparado con el anterior](imagenes/cuentas-balance.png)
+
+Arriba, lo cobrado, lo gastado y el balance del mes. Debajo, el **año mes a mes**,
+que se puede ver de dos maneras con el selector de la derecha:
+
+- **Gráfico**: una barra azul con lo cobrado y otra naranja con lo gastado en cada
+  mes, con el mes elegido sombreado detrás. Una **raya gris** sobre cada barra azul
+  marca lo que se cobró ese mismo mes del año anterior: si la barra pasa de la raya,
+  ese mes ha entrado más que entonces. Al pasar el ratón por encima de un mes salen
+  sus cifras, también la del año anterior. Si el año anterior no tuvo ningún cobro
+  —el primer año con Bitácora, por ejemplo—, la raya no sale.
+- **Tabla**: las mismas tres cifras en filas, con el mes elegido en negrita. Un
+  balance negativo sale en rojo.
+
+En los dos casos, el **total del año** queda debajo. Bitácora recuerda cuál de las
+dos se dejó puesta la última vez.
+
+El año es el **natural**, de enero a diciembre, que es como cuentan Hacienda y la
+gestoría. Para ver otro año basta con elegir cualquier mes de ese año arriba.
 
 ---
 
