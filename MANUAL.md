@@ -193,7 +193,9 @@ Y cuatro plazos:
 | **Plazo para recuperar una sesión** | Días de crédito cuando se cancela una sesión ya pagada | 30 |
 
 Cambiar una tarifa **solo afecta a lo que se agende a partir de ese momento**.
-Las sesiones ya agendadas conservan el importe que tenían.
+Las sesiones ya agendadas conservan el importe que tenían. Para cambiar el de una sola
+sesión, sin tocar la tarifa, está [Cambiar el importe](#cambiar-el-importe-de-una-sesión)
+en la Agenda.
 
 ### 4.3 La clave de recuperación
 
@@ -433,7 +435,8 @@ siguen incluyendo todo lo que hay, esté a la vista o no.
 
 **+ Nueva sesión**. Se elige el caso, la fecha, la hora y la duración (30, 45,
 50, 60, 75 o 90 minutos). **El importe no se pide**: sale de la tarifa del tipo
-de terapia del caso.
+de terapia del caso. Si esa sesión en concreto tiene que costar otra cosa, se
+cambia después desde su panel con **Cambiar el importe**.
 
 ![Ventana de Nueva sesión, con el caso, la fecha y la hora elegidos](imagenes/nueva-sesion.png)
 
@@ -536,6 +539,7 @@ Al pulsar una sesión se llena el panel de la derecha:
   cobro no se mueve**, que es lo que pasaría anulando y volviendo a marcar. Si
   esa sesión ya estaba facturada, la factura no cambia: hay que
   [rectificarla](#119-rectificar-una-factura).
+- **Cambiar el importe**: ver [más abajo](#cambiar-el-importe-de-una-sesión).
 - **Realizada**: la sesión se dio.
 - **No asistió**: no vino y no avisó. Se cobra.
 - **Reprogramar**: la mueve conservando el importe y el pago. Es lo que se usa
@@ -544,6 +548,28 @@ Al pulsar una sesión se llena el panel de la derecha:
 Si al dar una sesión por **realizada** ya estaba pagada, sale **Emitir factura**,
 que ofrece facturarla ahí mismo sin pasar por Facturación. Si el caso es de
 pareja se elige a quién se le factura. **Ahora no** la deja sin facturar.
+
+### Cambiar el importe de una sesión
+
+Para cuando una sesión concreta cuesta otra cosa que la de siempre: alguien que
+este mes no llega y se le cobra menos, o alguien que paga de más. **Cambiar el
+importe**, en el panel de la sesión, pide el importe nuevo y, si se quiere, el
+motivo.
+
+- **Solo cambia esa sesión.** La tarifa de Administración y el importe del caso
+  no se tocan, y las siguientes salen con el de siempre.
+- Debajo del importe queda **lo que le tocaba** y el motivo, para que una sesión
+  a 40 € entre otras a 60 € no parezca un error. Poniéndole otra vez el importe
+  de siempre, deja de constar como cambiada.
+- **El motivo es una nota tuya.** No sale en la factura, ni en el resumen de la
+  gestoría, ni en ningún correo.
+- **La factura sale por el importe nuevo**, sin más: como una sesión más cara o
+  más barata. Lo cobrado del mes y de Cuentas cuenta también el importe nuevo.
+- Se puede cambiar **antes o después de cobrarla**: a veces lo que vale se sabe
+  al recibir el pago.
+- **No se puede** si ya está facturada (la factura dice lo que valió), si la
+  cubre un crédito (vale lo que se pagó por la otra) o si se canceló sin cargo.
+  Tampoco puede valer 0 €: una sesión que no se cobra se cancela sin cargo.
 
 ### Cancelar
 
@@ -689,8 +715,10 @@ La factura sale **exenta de IVA** por el artículo 20.Uno.3º de la Ley del IVA,
 que es lo que corresponde a la asistencia sanitaria.
 
 **El concepto sale como «Prestación de servicios», y se puede cambiar** en el
-campo **Concepto** antes de emitir. Conviene dejarlo así de genérico: que no diga
-la modalidad, ni la fecha de la sesión, ni nada de lo que se trató. Esa factura
+campo **Concepto** antes de emitir. En el aviso que sale al cobrar una sesión en
+la agenda viene plegado, con el concepto a la vista: se despliega pulsando en él.
+Conviene dejarlo así de genérico: que no diga la modalidad, ni la fecha de la
+sesión, ni nada de lo que se trató. Esa factura
 puede acabar en manos de terceros —una mutua, una gestoría, quien la encuentre en
 un cajón— y todo eso, cruzado con un nombre y un NIF, es un dato de salud. Una
 vez emitida, el concepto ya no se cambia; si hace falta, la rectificativa sale
