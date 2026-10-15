@@ -150,7 +150,7 @@ necesites, y está en [Avanzado](#11-avanzado).
 
 ### 4.1 Los datos de la consulta
 
-Pestaña **Consulta**. Tres cosas:
+Pestaña **Consulta**. Seis cosas:
 
 - **Datos de la profesional**: nombre y apellidos, NIF, número de colegiada,
   dirección. Salen en las facturas y en los informes. **El número de colegiada
@@ -163,6 +163,26 @@ Pestaña **Consulta**. Tres cosas:
   hay que volver a firmar.
 - **Logotipo de la consulta**: se estampa como marca de agua muy atenuada en
   facturas, informes y expedientes. Opcional, y se quita con **Quitar**.
+- **Firma de los correos**: va al final de todos los correos que envía
+  Bitácora —avisos de cita, recordatorios y facturas—, con el logotipo debajo si
+  marcas **Incluir el logotipo de la consulta**. Se añade al enviar, así que no
+  hace falta escribirla en cada mensaje ni se puede borrar sin querer al
+  retocarlo. La primera vez sale una propuesta con tu nombre y tu número de
+  colegiada, pero **los correos no llevan firma hasta que pulses Guardar
+  firma**. Debajo se ve cómo le llegará al paciente.
+- **Aviso legal de los correos**: el texto de protección de datos que va debajo
+  de la firma, en letra pequeña, en todos los correos que envía Bitácora.
+- **Protección de datos en las facturas**: la cláusula que va al pie de cada
+  factura, en letra pequeña. Sale en todas las que exportes o envíes desde que la
+  guardes, también en las que ya estaban emitidas.
+
+  Los dos vienen propuestos con el texto de la consultora de protección de
+  datos, con tu nombre y tu dirección ya puestos. Falta tu correo de contacto,
+  que aparece como **[correo de la consulta]**: hay que escribirlo en su sitio.
+  **No se pueden guardar mientras quede algo entre corchetes**, y hasta que
+  pulses **Guardar aviso legal** o **Guardar cláusula** ni los correos ni las
+  facturas los llevan. Si la consultora cambia el texto, se cambia aquí y se
+  vuelve a guardar.
 
 ### 4.2 Tarifas y plazos
 
@@ -498,7 +518,8 @@ que falla sin que nadie lo vea es peor que no enviarlo. Cada sesión se recuerda
 correo.
 
 El texto de los cuatro correos que escribe Bitácora se cambia de una vez para
-siempre en [Mensajes al paciente](#113-mensajes-al-paciente).
+siempre en [Mensajes al paciente](#113-mensajes-al-paciente). La firma que va al
+final de todos ellos, en [Los datos de la consulta](#41-los-datos-de-la-consulta).
 
 ### Los colores del cobro
 
@@ -660,6 +681,34 @@ formato y mismo **Guardar y ver** que la historia.
 Los informes del caso salen en una lista. Al pulsar uno se abre en lectura, con
 **Editar** para retocarlo, **Cerrar informe** para volver a la lista y **Exportar
 a PDF…**, que lo saca con el logotipo de marca de agua si se subió uno.
+
+### Dictar en vez de escribir
+
+En la barra del editor, tanto en la historia como en los informes, está
+**Dictar**. Se pulsa, se habla, y se pulsa otra vez (ahora dice **Parar** y
+cuenta el tiempo, en rojo). Al cabo de unos segundos el texto aparece donde
+estaba el cursor, con su puntuación. Si no se había pinchado en el texto, va al
+final.
+
+Mientras graba, al lado del botón se mueven unas barras con la voz. **Si se habla
+y se quedan planas, no está oyendo**: el micrófono no es el que toca, está
+silenciado o el sistema no da permiso. La primera vez, Windows o macOS pueden
+preguntar si Bitácora puede usar el micrófono; si se dijo que no, Bitácora avisa
+de dónde activarlo (en Windows, Configuración › Privacidad y seguridad ›
+Micrófono).
+
+Lo dictado entra como si se hubiera tecleado: **se revisa antes de guardar**.
+Los nombres propios y las siglas son lo que más se equivoca. Funciona mejor a
+trozos, un párrafo cada vez, que dictando el informe entero de un tirón.
+
+La primera vez pide descargar el reconocimiento de voz (unos 550 MB). Es una sola
+vez; después funciona **sin internet**.
+
+> **La voz no sale del ordenador.** Se transcribe en el propio equipo, no en
+> ningún servicio de internet, y la grabación no se guarda: en cuanto está el
+> texto, se borra. Si se sale del editor mientras graba, lo grabado se tira.
+>
+> Es para dictar, no para grabar la sesión con el paciente.
 
 ### Material de trabajo
 
