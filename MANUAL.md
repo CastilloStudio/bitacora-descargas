@@ -685,10 +685,11 @@ a PDF…**, que lo saca con el logotipo de marca de agua si se subió uno.
 ### Dictar en vez de escribir
 
 En la barra del editor, tanto en la historia como en los informes, está
-**Dictar**. Se pulsa, se habla, y se pulsa otra vez (ahora dice **Parar** y
-cuenta el tiempo, en rojo). Al cabo de unos segundos el texto aparece donde
-estaba el cursor, con su puntuación. Si no se había pinchado en el texto, va al
-final.
+**Dictar**. Se pulsa y se habla. **El texto va apareciendo mientras se dicta**:
+en cada pausa, lo dicho hasta ahí entra donde estaba el cursor, con su
+puntuación. Para acabar se pulsa otra vez (mientras graba dice **Parar** y
+cuenta el tiempo, en rojo); lo último que se dijo tarda un par de segundos en
+aparecer. Si no se había pinchado en el texto, va al final.
 
 Mientras graba, al lado del botón se mueven unas barras con la voz. **Si se habla
 y se quedan planas, no está oyendo**: el micrófono no es el que toca, está
@@ -698,15 +699,19 @@ de dónde activarlo (en Windows, Configuración › Privacidad y seguridad ›
 Micrófono).
 
 Lo dictado entra como si se hubiera tecleado: **se revisa antes de guardar**.
-Los nombres propios y las siglas son lo que más se equivoca. Funciona mejor a
-trozos, un párrafo cada vez, que dictando el informe entero de un tirón.
+Los nombres propios y las siglas son lo que más se equivoca. Ayuda hacer una
+pequeña pausa al terminar cada frase: es por donde se va cortando para escribir,
+y así cada trozo lleva frases enteras, con su punto. Si te paras a pensar a mitad
+de una frase, Bitácora puede tomarla por acabada y ponerle punto: se corrige al
+repasar. Se puede dictar un informe entero de un tirón.
 
 La primera vez pide descargar el reconocimiento de voz (unos 550 MB). Es una sola
 vez; después funciona **sin internet**.
 
 > **La voz no sale del ordenador.** Se transcribe en el propio equipo, no en
 > ningún servicio de internet, y la grabación no se guarda: en cuanto está el
-> texto, se borra. Si se sale del editor mientras graba, lo grabado se tira.
+> texto de cada frase, se borra. Si se sale del editor mientras graba, lo que
+> faltaba por escribir se tira.
 >
 > Es para dictar, no para grabar la sesión con el paciente.
 
@@ -854,13 +859,15 @@ que se puede ver de dos maneras con el selector de la derecha:
   mes, con el mes elegido sombreado detrás. Una **raya gris** sobre cada barra azul
   marca lo que se cobró ese mismo mes del año anterior: si la barra pasa de la raya,
   ese mes ha entrado más que entonces. Al pasar el ratón por encima de un mes salen
-  sus cifras, también la del año anterior. Si el año anterior no tuvo ningún cobro
-  —el primer año con Bitácora, por ejemplo—, la raya no sale.
+  sus cifras, también la del año anterior, y **al pulsarlo se elige ese mes**, igual
+  que en el selector de arriba: cambian las cifras del mes y las otras dos pestañas.
+  Si el año anterior no tuvo ningún cobro —el primer año con Bitácora, por ejemplo—,
+  la raya no sale.
 - **Tabla**: las mismas tres cifras en filas, con el mes elegido en negrita. Un
   balance negativo sale en rojo.
 
-En los dos casos, el **total del año** queda debajo. Bitácora recuerda cuál de las
-dos se dejó puesta la última vez.
+El **total del año** sale en la leyenda del gráfico, al lado de cada color, y en la
+tabla, en la última fila. Bitácora recuerda cuál de las dos se dejó puesta la última vez.
 
 El año es el **natural**, de enero a diciembre, que es como cuentan Hacienda y la
 gestoría. Para ver otro año basta con elegir cualquier mes de ese año arriba.
