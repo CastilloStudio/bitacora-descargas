@@ -193,6 +193,11 @@ Pestaña **Tarifas**. Se guarda todo junto con **Guardar tarifas**.
   nombre (por ejemplo «Individual online»), precio, y marcar **De pareja** si
   necesita dos personas. El precio de cada terapia es el que se aplica a las
   sesiones de los casos abiertos con ella.
+- **Sesión individual, si viene uno solo**: solo en las terapias de pareja, debajo
+  del precio. Es lo que vale la sesión a la que viene uno de los dos (ver
+  [Cuando viene uno solo](#cuando-viene-uno-solo-de-la-pareja)). Vacía, esa
+  sesión vale lo mismo que la de pareja. Al ponerla, **los casos de pareja ya
+  abiertos que no la tenían la toman**; los que ya la tenían conservan la suya.
 - **Enlace del consentimiento**: debajo de cada terapia, la dirección de la
   página donde se rellena su consentimiento —cada terapia tiene la suya, porque
   el documento anuncia su precio y sus condiciones—. **Copiar** lo deja en el
@@ -478,12 +483,51 @@ libre. Las de «no asistió» sí, que esas ocuparon la hora.
 
 Tampoco se puede agendar **hacia atrás**, ni en un **caso cerrado**.
 
+### Cuando viene uno solo de la pareja
+
+En un caso de pareja, la ventana de **Nueva sesión** pregunta además **Quién
+viene**: **Los dos**, que es lo que sale puesto, o **Solo** uno de ellos. Debajo
+dice lo que va a valer la sesión: la de uno solo vale el precio de **Sesión
+individual** de la tarifa (ver [Tarifas](#42-tarifas-y-plazos)).
+
+![Nueva sesión de un caso de pareja, con «Solo Bruno» elegido y el precio de la sesión individual debajo](imagenes/nueva-sesion-pareja.png)
+
+Una sesión de uno solo **es suya, y del otro no**:
+
+- En la agenda sale con su nombre delante: «**Luis Mora** · pareja con Ana».
+- **El aviso y el recordatorio le llegan solo a él.** A Ana no se le ofrece ni
+  aparece en la ventana del aviso, para que no se le pueda escribir por despiste.
+- **En Google Calendar** va solo su etiqueta, no la de los dos.
+- **La factura** se propone a nombre de quien vino, y se puede cambiar.
+- **En el expediente de Ana** no sale esa sesión ni su factura (ver
+  [Acceso](#acceso-entregarle-su-expediente)).
+- Lo que se hable va a **su historia clínica**, que ya es de cada uno.
+
+Si esa sesión se cancela con crédito, la de recuperación es **otra sesión
+individual de la misma persona**: el crédito vale lo que se pagó por ella.
+
 ### Avisar al paciente
 
 Justo después de agendar sale **Enviar la cita**, con el correo ya redactado:
 destinatario, asunto y mensaje, todo modificable. **Enviar al paciente** lo
 manda; **Ahora no** lo deja sin enviar. **La sesión queda agendada en los dos
 casos**: esa ventana solo decide si se avisa.
+
+**En una sesión de pareja salen los dos**, cada uno con su correo y su marca, y
+los dos marcados. Desmarcando a uno, el aviso le llega solo al otro. Lo que se
+decide ahí:
+
+![Enviar la cita de una sesión de pareja: las dos personas marcadas, cada una con su correo](imagenes/enviar-cita-pareja.png)
+
+- **Vale solo para esa sesión.** La siguiente vuelve a ofrecer a los dos.
+- **El recordatorio automático de esa sesión lo respeta**: a quien se quitó
+  tampoco le llega.
+- **Cada uno recibe su propio correo**, nunca uno con los dos en el «Para»: así
+  ninguno ve la dirección del otro.
+- Si el texto pone el nombre (`{paciente}`, ver
+  [Mensajes al paciente](#113-mensajes-al-paciente)), saluda a los marcados:
+  «Hola Ana y Luis». Si ya lo has retocado a mano, Bitácora no te lo cambia y el
+  saludo lo ajustas tú.
 
 La misma ventana sale al **reprogramar**, con los datos de la cita nueva y el
 texto adaptado para que se entienda que es un cambio de hora.
@@ -495,7 +539,8 @@ texto adaptado para que se entienda que es un cambio de hora.
 
 **Por WhatsApp**: clic derecho sobre la sesión → **Abrir en WhatsApp**. Se abre
 la conversación con el paciente (el teléfono de su ficha) y con el mismo texto ya
-escrito. **No se envía solo**: se revisa y se pulsa Intro. No hace falta tenerlo
+escrito. En una sesión de pareja de los dos, el menú ofrece **WhatsApp a Ana** y
+**WhatsApp a Luis**, porque una conversación es con una persona. **No se envía solo**: se revisa y se pulsa Intro. No hace falta tenerlo
 guardado en los contactos.
 
 Si el ordenador no tiene WhatsApp instalado se abre WhatsApp Web, y el texto
@@ -621,6 +666,10 @@ Al agendar una **Nueva sesión** de un caso con créditos disponibles aparece
 **Cubrir con crédito**. Si se elige uno, la sesión queda pagada sin cobrar de
 nuevo y se factura con normalidad al darla por realizada. Si el importe del
 crédito no coincide con el de la sesión, la diferencia se ajusta aparte.
+
+En una pareja, el crédito de una sesión a la que vino uno solo dice de quién es
+(«Crédito de 65,00 € · solo Luis»), y al elegirlo la sesión nueva queda también
+**solo de él**: **Quién viene** ya no se puede cambiar.
 
 ---
 
@@ -1024,7 +1073,8 @@ paciente.
 #### Qué ve Google y qué no
 
 En el calendario solo aparece una etiqueta del tipo `Sesión · AR-3f9c1b`: **nunca
-el nombre del paciente ni el motivo**. El paciente no se añade como invitado.
+el nombre del paciente ni el motivo**. Una sesión de pareja lleva las dos
+etiquetas, y la de uno solo, solo la suya. El paciente no se añade como invitado.
 Bitácora solo mira sus propias sesiones: las citas personales del mismo
 calendario no se leen.
 
@@ -1111,6 +1161,10 @@ En la ficha, pestaña **Resumen**, la tarjeta **Derechos del paciente**.
 de esa persona: sus datos, su historia clínica, sus casos, todas sus sesiones,
 sus informes, su material de trabajo, sus cuestionarios y sus facturas. También
 los consentimientos que haya firmado, incluidos los anteriores.
+
+De un caso de pareja salen las sesiones de los dos y las suyas a solas, pero
+**no las que el otro tuvo a solas**, ni sus facturas: que existieron ya es un
+dato de salud del otro.
 
 Es lo que se le entrega si ejerce el derecho de acceso. Queda anotado en el
 registro, que es lo que acredita haberlo atendido.
